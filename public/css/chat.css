@@ -1,0 +1,223 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+  
+  :root {
+    --left-msg-bg: #ececec;
+    --right-msg-bg: #579ffb;
+  }
+  
+  .inner-width{
+    height: 65px;
+    background-color: #2f3640;
+  }
+  
+  
+  .navigation-menu{
+      float: left;
+    margin: 20px 10px 0 0;
+  }
+  
+  .navigation-menu a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+  .message{
+    background: #fff;
+  }
+  .message i{
+    
+    color: #2f3640;
+  }
+
+  
+  .navigation-menu a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .navigation-menu i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  .logout{
+    float: right;
+    margin: 20px 10px 0 0;
+  }
+  .logout a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+  
+  
+  .logout a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .logout i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+.swap{
+  width: 100%;
+  height: 710px;
+}
+  .left{
+    width: 25%;
+    height: 100%;
+    float: left;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(97, 100, 104, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    background-color: #fbfbfc;
+    margin: 10px auto auto 3%;
+  }
+  .left img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-left: 5px;
+  }
+  .left .name{
+    font-size:17px;
+      
+      position: relative;
+      top:-20px;
+  }
+  .left .list{
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 1) 0px 1px 2px;
+    border-radius: 5px;
+    width: 85%;
+    margin: 5px auto auto auto;
+    cursor: pointer;
+    background-color: #fbfbfc;
+  }
+  .right{
+    width: 70%;
+    height: 100%;
+    float: right;
+  }
+  
+
+
+  .msger-chat {
+    flex: 1;
+    overflow-y: auto;
+    height: 87%;
+    width: 92%;
+    padding: 10px;
+    overflow:auto;
+    margin: 5px auto auto auto;
+    border-radius: 15px;
+    background-color: #edeff1;
+    scroll-margin-inline-end: 0;
+  }
+  .msger-chat::-webkit-scrollbar {
+    width: 6px;
+  }
+  .msger-chat::-webkit-scrollbar-track {
+    background: #ddd;
+  }
+  .msger-chat::-webkit-scrollbar-thumb {
+    background: #bdbdbd;
+  }
+  .msg {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+  }
+  .msg:last-of-type {
+    margin: 0;
+  }
+  .msg-img img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    background: #ddd;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+  }
+  .msg-bubble {
+    max-width: 450px;
+    padding: 15px;
+    border-radius: 15px;
+    background: rgba(192, 185, 185, 0.774);
+  }
+  .msg-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .msg-info-name {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  .msg-info-time {
+    font-size: 0.85em;
+  }
+  
+  .left-msg .msg-bubble {
+    border-bottom-left-radius: 0;
+  }
+  
+  .right-msg {
+    flex-direction: row-reverse;
+  }
+  .right-msg .msg-bubble {
+    background: var(--right-msg-bg);
+    color: #fff;
+    border-bottom-right-radius: 0;
+  }
+  .right-msg .msg-img {
+    margin: 0 0 0 10px;
+  }
+  
+  .msger-inputarea {
+    display: flex;
+    padding: 10px;
+    width: 92%;
+    margin: auto ;
+
+    
+  }
+  .msger-inputarea * {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 1em;
+    outline:none;
+    
+  }
+  .msger-input {
+    flex: 1;
+    background: #ddd;
+  }
+  .msger-send-btn {
+    margin-left: 10px;
+    background: rgb(0, 196, 65);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.23s;
+    outline:none;
+  }
+  .msger-send-btn:hover {
+    background: rgb(0, 180, 50);
+  }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <script src="/ajax/manage.ajax.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/manageAdmin.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="inner-width">
+        <div class="navigation-menu">
+          <a href="/Account/indexAdmin" ><i class="fas fa-home home"></i> Home</a>
+          <a href="/admin/manage" class="manage"><i class="fas fa-users">  Manage user</i></a>
+          <a href="/admin/event"><i class="fas fa-clipboard"></i>Event</a>
+        </div>
+		<div class="logout">
+			<a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+		</div>
+		 
+      </div>
+    <h1>Manage user</h1>
+
+<button class="btnaddform"><i class="fas fa-plus-circle"></i> Add Master</button>
+<div class="formadd"></div>
+
+    <div class="tdata">
+        <table class="table ">
+            <thead>
+            <tr>
+                <th>
+                    stt 
+                </th>
+                <th>
+                    Image 
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    <Select name="role" id="role">
+                        <option value="fishing">Fishing</option>
+                        <option value="master">Master</option>
+                    </Select>
+                </th>
+                <th>
+                    Phone
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody >
+        </tbody>
+        </table>
+
+    </div>
+    
+
+    
+</body>
+</html>

@@ -1,0 +1,332 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+  
+  
+  .inner-width{
+    height: 65px;
+    background-color: #2f3640;
+  }
+  
+  
+  .navigation-menu{
+      float: left;
+    margin: 20px 10px 0 0;
+  }
+  
+  .navigation-menu a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+  .manageTicket {
+    background: #fff;
+    color: #2f3640;
+  }
+  .manageTicket i {
+    color: #2f3640;
+  }
+
+  
+  .navigation-menu a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .navigation-menu i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  .logout{
+    float: right;
+    margin: 20px 10px 0 0;
+  }
+  .logout a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+  
+  
+  .logout a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .logout i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  .swap{
+    background-color: whitesmoke;
+    width: 100%;
+    height: 100%;
+  }
+  .left{
+    width: 30%;
+    float: left;
+    height: auto;
+    margin-left: 30px;
+    margin-top: 30px;
+  }
+  .left .formButton{
+    float: left;
+    width: 30%;
+  }
+  .left .dataticket{
+    width: 70%;
+    float: right;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  }
+  h1{
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .left .datacalendar{
+    width: 70%;
+    float: right;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+  }
+  .left .dataticket input{
+    border: none;
+    outline: none;
+    width: 100px;
+
+  }
+  .left .dataticket p{
+    margin-bottom: 5px;
+    margin-left: 40px;
+  }
+   .left .datacalendar input{
+    border: none;
+    outline: none;
+    width: 100px;
+
+  }
+  .left .datacalendar p{
+    margin-bottom: 5px;
+    margin-left: 40px;
+  }
+  
+  .right{
+    width: 65%;
+    float: right;
+    height: auto;
+    margin-right: 30px;
+    margin-top: 30px;
+
+  }
+  .modal {
+    position: fixed;
+    z-index: 5; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+  }
+  
+
+  .modal-content-1 {
+    background-color: #fefefe;
+    margin: auto auto auto auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 20px;
+    width: 280px;
+    height: 340px;
+  }
+  
+  .modal-content-1 .text{
+    font-size: 30px;
+    text-align: center;
+  }
+  .modal-content-1 input{
+    border: none;
+    border-bottom:1px solid #2f3640;
+    width: 100%;
+    height: 35px;
+    margin-top: 5px;
+    outline: none;
+    margin: auto auto 10px auto;
+  }
+  .modal-content-1 button{
+    width: 110px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #2f3640;
+    cursor: pointer;
+    outline: none;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    margin-top: 10px;
+  }
+  .modal-content-1 button:hover{
+    transform: scale(0.95);
+  }
+  .close {
+    color: #000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -15px;
+    margin-right: -15px;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: rgb(31, 27, 216);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .modal-content-2 {
+    background-color: #fefefe;
+    margin: auto auto auto auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 20px;
+    width: 280px;
+    height: 350px;
+  }
+  .modal-content-2 .text{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .modal-content-2 input{
+    border: none;
+    border-bottom:1px solid #2f3640;
+    width: 100%;
+    height: 35px;
+    margin-top: 5px;
+    outline: none;
+    margin: auto auto 10px auto;
+  }
+  .modal-content-2 button{
+    width: 110px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #2f3640;
+    cursor: pointer;
+    outline: none;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    margin-top: 10px;
+  }
+  .modal-content-2 button:hover{
+    transform: scale(0.95);
+  }
+  .modal-content-3 {
+    background-color: #fefefe;
+    margin: auto auto auto auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 20px;
+    width: 280px;
+    height: 160px;
+  }
+  .modal-content-3 .text{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .modal-content-3 input{
+    border: none;
+    border-bottom:1px solid #2f3640;
+    width: 100%;
+    height: 35px;
+    margin-top: 5px;
+    outline: none;
+    margin: auto auto 10px auto;
+  }
+  .modal-content-3 button{
+    width: 110px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #2f3640;
+    cursor: pointer;
+    outline: none;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    margin-top: 10px;
+  }
+  .modal-content-3 button:hover{
+    transform: scale(0.95);
+  }
+  
+  table{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+  }
+  td, th{
+    border: 1px solid #cccccccc;
+    padding: 8px;
+  }
+
+  thead{
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #2f3640;
+    color: white;
+  }
+  tr:nth-child(even){
+    background-color: #dddddd;
+  }
+  table button{
+    width: 150px;
+    height: 40px;
+    padding: 7px;
+    border: none;
+    background-color: #2f3640;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  table button:hover{
+    transform: scale(0.95);
+  }
+
+  .addFormticket,.addFormCalendar, .addFormDayOff, .btnupdate{
+    width: 130px;
+    height: 40px;
+    padding: 7px;
+    border: none;
+    background-color: #2f3640;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  .addFormticket:hover,.addFormCalendar:hover,.addFormDayOff:hover,.btnupdate :hover{
+    transform: scale(0.95);
+  }
+
+

@@ -1,0 +1,117 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+  
+  
+  .inner-width{
+    height: 65px;
+    background-color: #2f3640;
+  }
+  
+  
+  .navigation-menu{
+      float: left;
+    margin: 20px 10px 0 0;
+  }
+  
+  .navigation-menu a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+
+  
+  .navigation-menu a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .navigation-menu i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  .logout{
+    float: right;
+    margin: 20px 10px 0 0;
+  }
+  .logout a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+  
+  
+  .logout a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .logout i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  .left{
+    float: left;
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 15%;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+  .left h1{
+    margin-bottom: 20px;
+  }
+  .left p{
+    margin-bottom: 5px;
+    word-wrap: break-word;
+  }
+  .addbtn{
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    color: #fff;
+    background-color: #2f3640;
+    cursor: pointer;
+  }
+  .addbtn:hover{
+    transform: scale(1.1);
+  }
+
+  table{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    width: 80%;
+    float: right;
+    margin-top: 30px;
+    margin-right: 30px;
+  }
+  td, th{
+    border: 1px solid #cccccccc;
+    padding: 8px;
+  }
+  th{
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #2f3640;
+    color: white;
+  }
+
+  .da{
+    background-color: #dddddd;
+  }

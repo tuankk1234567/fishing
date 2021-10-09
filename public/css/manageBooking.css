@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+  
+  
+  .inner-width{
+    height: 65px;
+    background-color: #2f3640;
+  }
+  
+  
+  .navigation-menu{
+      float: left;
+    margin: 20px 10px 0 0;
+  }
+  
+  .navigation-menu a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+  .manageBooking {
+    background: #fff;
+    color: #2f3640;
+  }
+  .manageBooking i{
+    color: #2f3640;
+  }
+
+  
+  .navigation-menu a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .navigation-menu i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  .logout{
+    float: right;
+    margin: 20px 10px 0 0;
+  }
+  .logout a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+  
+  
+  .logout a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .logout i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+
+  table{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+  }
+  td, th{
+    border: 1px solid #cccccccc;
+    padding: 8px;
+  }
+  th{
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #2f3640;
+    color: white;
+  }
+  tr:nth-child(even){
+    background-color: #dddddd;
+  }
+
+  .yes{
+    width: 60px;
+    height: 30px;
+    padding: 7px;
+    border: none;
+    background-color: #0edd6b;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .no{
+    width: 60px;
+    height: 30px;
+    padding: 7px;
+    border: none;
+    background-color: #f50505;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  table button:hover{
+    transform: scale(0.95);
+  }
+  .done{
+    width: 80px;
+    height: 40px;
+    padding: 7px;
+    border: none;
+    background-color: #0f0f0f;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+  }

@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+  
+  
+  .inner-width{
+    height: 65px;
+    background-color: #2f3640;
+  }
+  
+  
+  .navigation-menu{
+      float: left;
+    margin: 20px 10px 0 0;
+  }
+  
+  .navigation-menu a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+  .allmaster {
+    background: #fff;
+  }
+  .allmaster i{
+    color: #2f3640;
+  }
+
+  
+  .navigation-menu a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .navigation-menu i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  .logout{
+    float: right;
+    margin: 20px 10px 0 0;
+  }
+  .logout a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+  
+  
+  .logout a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .logout i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+
+  table{
+    border-collapse: collapse;
+    width: 95%;
+    text-align: center;
+    margin: 10px auto auto auto;
+  }
+  td, th{
+    border: 1px solid #cccccccc;
+    padding: 8px;
+  }
+  th{
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #2f3640;
+    color: white;
+  }
+  tr:nth-child(even){
+    background-color: #dddddd;
+  }
+
+  table button{
+    width: 150px;
+    height: 40px;
+    padding: 7px;
+    border: none;
+    background-color: #2f3640;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  table button:hover{
+    transform: scale(0.95);
+  }
+  #search{
+    height: 30px;
+    width: 380px;
+    border-radius: 10px;
+    margin: 30px auto auto 50px;
+  }
+  .searchForm .fas{
+    margin-left: -20px;
+  }

@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+  
+  
+  .inner-width{
+    height: 65px;
+    background-color: #2f3640;
+  }
+  
+  
+  .navigation-menu{
+      float: left;
+    margin: 20px 10px 0 0;
+  }
+  
+  .navigation-menu a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+  .warehouse {
+    background: #fff;
+  }
+  .warehouse i{
+    color: #2f3640;
+  }
+
+  
+  .navigation-menu a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .navigation-menu i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  .logout{
+    float: right;
+    margin: 20px 10px 0 0;
+  }
+  .logout a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+  
+  
+  .logout a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .logout i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  h1{
+    text-align: center;
+    margin-top: 30px;
+
+  }
+
+  table{
+    border-collapse: collapse;
+    width: 95%;
+    text-align: center;
+    margin: 10px auto auto auto;
+  }
+  td, th{
+    border: 1px solid #cccccccc;
+    padding: 8px;
+  }
+  th{
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #2f3640;
+    color: white;
+  }
+
+  .da{
+    background-color: #dddddd;
+  }

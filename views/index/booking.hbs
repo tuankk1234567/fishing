@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <script src="/ajax/booking.ajax.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+<link rel="stylesheet" href="/css/booking2.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="inner-width">
+        <div class="navigation-menu">
+           <i class="fas fa-chevron-left"> <span onclick="back()">Back</span></i>
+
+        </div>
+		 
+      </div>
+   
+     <input type="hidden" id="id" value="{{id}}">
+     <div class="left"></div>
+ 
+
+    
+        <table class="table ">
+            
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    <input type="date" name="date4" id="date4">
+                </th>
+                <th><Select name="timeFishing" id="timeFishing">
+                        <option value="8 am to 12 am">8 am to 12 am</option>
+                        <option value="2 pm to 6 pm">2 pm to 6 pm</option>
+                        <option value="7 pm to 11 pm">7 pm to 11 pm</option>
+                    </Select></th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="booking" >
+        </tbody>
+
+        </table>
+        
+</body>
+</html>

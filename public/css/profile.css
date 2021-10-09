@@ -1,0 +1,290 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+  
+  
+  .inner-width{
+    height: 65px;
+    background-color: #2f3640;
+  }
+  
+  
+  .navigation-menu{
+      float: left;
+    margin: 15px 10px 0 20px;
+  }
+  
+  .navigation-menu i{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+    cursor: pointer;
+  }
+  
+  .navigation-menu i:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  .logout{
+    float: right;
+    margin: 20px 10px 0 0;
+  }
+  .logout a{
+    text-align: center;
+    margin-left: 10px;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: .3s linear;
+  }
+  
+  
+  .logout a:hover{
+    background: #fff;
+    color: #2f3640;
+    transform: scale(1.1);
+  }
+  
+  .logout i{
+    margin-right: 8px;
+    font-size: 16px;
+  }
+
+  .left{
+    float: left;
+    width: 30%;
+    height: 500px;
+    text-align: center;
+    border-right: #242222 solid 2px;
+  }
+  .left img{
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    margin-top: 15px;
+  }
+  .left p{
+    font-size: 25px;
+    margin-top: 15px;
+  }
+  .left a{
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #000;
+
+  }
+  .left a:hover{
+    color: blue;
+  }
+  .right{
+    float: right;
+    width: 60%;
+    height: 500px;
+  }
+  .right .t{
+    margin-top: 25px;
+    font-size: 30px;
+  }
+  .right r{
+    margin-top: 40px;
+  }
+  .right p {
+    border-bottom:#242222 solid 1px;
+    font-size: 24px;
+    margin-top: 10px;
+  }
+  
+
+
+
+  
+  
+  .close {
+    color: #000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -15px;
+    margin-right: -15px;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: rgb(31, 27, 216);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .PostForm{
+    width: 100%;
+    margin-top: 520px;
+}
+.PostForm .formevent{
+    margin-left: auto;
+    margin-right: auto;
+    width:700px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    border-radius:20px;
+}
+.PostForm .formevent img{
+    width:700px;
+    height:700px;
+}
+.PostForm .formevent .imgUser{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  margin-top: 7px;
+  margin-left: 10px;
+
+}
+.PostForm .formevent a{
+  text-decoration: none;
+  color: #000;
+
+}
+.date{
+  margin-left: 10px;
+}
+.PostForm .formevent .write{
+    font-size:20px;
+    margin: 5px auto 5px 15px;
+
+
+}
+.PostForm .formevent .like {
+    display:inline;
+    margin-right: 50px;
+    cursor:pointer;
+    margin: 5px 20% 5px 10px;
+    outline:none;
+
+
+}
+.PostForm .formevent .like .fas {
+    font-size:23px;
+    color:black;
+
+}
+.PostForm .formevent .like1 {
+  display:inline;
+  margin-right: 50px;
+  cursor:pointer;
+  margin: 5px 20% 5px 10px;
+  outline:none;
+
+
+}
+.PostForm .formevent .like1 .fas {
+  font-size:23px;
+
+}
+.PostForm .formevent button{
+    border:none;
+    background-color:white;
+    cursor:pointer;
+    outline:none;
+}
+.PostForm .formevent button i{
+  font-size:23px;
+  outline:none;
+}
+
+.modal1 {
+  position: fixed;
+  z-index: 5; 
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow-x:hidden;
+  overflow-y:auto;
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+
+.modal-content1 {
+  background-color: #fefefe;
+  margin: auto auto auto auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 20px;
+  width: 700px;
+  
+}
+
+.close {
+  color: #000;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: -15px;
+  margin-right: -15px;
+}
+
+.close:hover,
+.close:focus {
+  color: rgb(31, 27, 216);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.datacomment1{
+  width: 100%;
+  height: auto;
+  margin-top: 5px;
+
+}
+ .datacomment1 img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+
+}
+.datacomment1 .comment1{
+    border: 1px solid black;
+    border-radius:15px;
+    width: 90%;
+    margin: -45px auto auto 60px;
+    text-align: left;
+}
+.datacomment1 .comment1 .date{
+  font-size: 12px;
+
+}
+.datacomment1 .comment1 .commentdata{
+  margin: auto auto auto 20px;
+  word-wrap: break-word;
+}
+.commentForm textarea{
+    margin: 20px auto auto 67px;
+    width:70%;
+}
+.commentForm button{
+  margin-top: 18px;
+    width:120px;
+    height:30px;
+    border-radius:10px;
+    background:black;
+    color:whitesmoke;
+    border:none;
+    cursor:pointer;
+    float: right;
+
+}
+
+  
+  

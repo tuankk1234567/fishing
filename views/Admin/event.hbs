@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <script src="/ajax/post.ajax.js"></script>
+    <link rel="stylesheet" href="/css/event.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="inner-width">
+        <div class="navigation-menu">
+          <a href="/account/indexAdmin" ><i class="fas fa-home home"></i>Home</a>
+          <a href="/admin/manage" ><i class="fas fa-users"></i> Manage user</a>
+          <a href="/admin/event" class="event"><i class="fas fa-clipboard">  Event</i></a>
+        </div>
+		<div class="logout">
+			<a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+		</div>
+		 
+      </div>
+      <div class="swap">
+          <div class = "infor">
+               <img   src="/upload/{{data.imageUrl}}" alt="">
+       <textarea class="writePost" name="writePost" rows="4" cols="70"></textarea>
+    <p><input type="file" class="imageUrl" name="imageUrl" multiple></p>
+    <p><button type="submit" class="btnAddPost">Submit</button></p>       
+          </div>
+         
+    <input  type="hidden" value = "{{data.imageUrl}}" id="imageUrl">
+    <input type="hidden" value="{{data._id}}" id="idUser"> 
+    <input type="hidden" value="{{data.role}}" id="role"> 
+    <input type="hidden" value="{{data.name}}" id="name"  class = "name"> 
+   
+    
+
+
+  <div class="PostForm"></div>
+    
+    
+    </div>
+    
+
+
+
+
+
+    
+</body>
+</html>
