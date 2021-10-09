@@ -8,6 +8,7 @@ var jwt = require('jsonwebtoken');
 var path = require('path');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.urlencoded({ extended: false }))
+const MongoClient = mongodb.MongoClient;
 var cookieParser = require('cookie-parser')
 const AccountModel = require('./models/Account.model')
 var bodyParser = require('body-parser');
@@ -18,6 +19,7 @@ const FishingRouter = require("./routers/fishing.router")
 const IndexRouter = require("./routers/index.router")
 const AdminRouter = require("./routers/Admin.router");
 const MasterRouter = require("./routers/Master.router");
+
 app.set('view engine', 'hbs');
 
 app.use(express.static(path.join(__dirname + '/public')));
