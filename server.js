@@ -1,10 +1,4 @@
 const express = require("express");
-const AccountRounter = require("./routers/Account.router");
-const FishingRouter = require("./routers/fishing.router")
-const AdminRouter = require("./routers/Admin.router");
-const MasterRouter = require("./Master.router");
-const IndexRouter = require("./routers/index.router")
-
 const app = express();
 var bodyParser = require('body-parser')
 const multer = require('multer');
@@ -19,7 +13,11 @@ const AccountModel = require('./models/Account.model')
 var bodyParser = require('body-parser');
 const PostModel = require('./models/Post.model')
 const ChatModel = require('./models/Chat.model')
-
+const Account = require("./routers/Account.router");
+const Fishing = require("./routers/fishing.router")
+const Admin= require("./routers/Admin.router");
+const Master = require("./routers/Master.router");
+const Index = require("./routers/index.router")
 
 app.set('view engine', 'hbs');
 
@@ -29,11 +27,11 @@ app.use(express.static(path.join(__dirname + '/views')));
 app.use(bodyParser.json())
 app.use(cookieParser())
 
-app.use('/account',AccountRounter);
-app.use('/admin',AdminRouter)
-app.use('/master',MasterRouter)
-app.use('/allmaster',FishingRouter)
-app.use('/',IndexRouter);
+app.use('/account',Account);
+app.use('/admin',Admin)
+app.use('/master',Master)
+app.use('/allmaster',Fishing)
+app.use('/',Index);
 
 const http = require('http');
 const socket = require('socket.io');
