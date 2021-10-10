@@ -16,7 +16,7 @@ const ChatModel = require('./models/Chat.model')
 const Account = require("./routers/Account.router");
 const Fishing = require("./routers/fishing.router")
 const Admin= require("./routers/Admin.router");
-const Master = require("./routers/Master.router");
+const Master = require("./routers/master.router");
 const Index = require("./routers/index.router")
 
 app.set('view engine', 'hbs');
