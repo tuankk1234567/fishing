@@ -27,7 +27,7 @@ function getdata(){
                            if(data.imageUrl[0] === undefined){
                                PostForm.append('\
                                <div class= "formevent" id= "'+data._id+'">\
-                               <a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="/upload/'+data.idUser.imageUrl+'" alt="">\
+                               <a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="'+data.idUser.imageUrl+'" alt="">\
                                <span>'+data.idUser.name+'</span></a>\
                                <span style="font-size:12px;" class="date">'+data.date+':'+data.time+'</span>\
                                <button style="width: 80px;height: 40xp;font-size: 15px;padding: 4px 4px 4px 4px;margin-top:5px; background-color: #2f3640; border-radius: 10px; color: #fff; float: right" class = "delete"  value="'+data._id+'">Delete</button>\
@@ -42,7 +42,7 @@ function getdata(){
                                 
                             }else{
                                 PostForm.append('<div class= "formevent" id= "'+data._id+'"></div>')
-                                $('#'+data._id+'').append('<a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="/upload/'+data.idUser.imageUrl+'" alt="">\
+                                $('#'+data._id+'').append('<a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="'+data.idUser.imageUrl+'" alt="">\
                                 <span>'+data.idUser.name+'</span></a>\
                                 <span  style="font-size:12px;" class="date">'+data.date+':'+data.time+'</span>\
                                 <button style="width: 80px;height: 40xp;font-size: 15px;padding: 4px 4px 4px 4px;margin-top:5px; background-color: #2f3640; border-radius: 10px; color: #fff; float: right" class = "delete"  value="'+data._id+'">Delete</button>\
@@ -64,12 +64,12 @@ function getdata(){
                                     if(i === 0){
                                        $('#'+data._id+' .carousel-inner').append('\
                                        <div class="carousel-item active">\
-                 <img class="d-block w-100" src="/upload/'+data.imageUrl[i]+'" alt="First slide">\
+                 <img class="d-block w-100" src="'+data.imageUrl[i]+'" alt="First slide">\
                </div>')
                                     }else{
                                        $('#'+data._id+' .carousel-inner').append('\
                                        <div class="carousel-item">\
-                 <img class="d-block w-100" src="/upload/'+data.imageUrl[i]+'" alt="First slide">\
+                 <img class="d-block w-100" src="'+data.imageUrl[i]+'" alt="First slide">\
                </div>')
                                     }
                                    
@@ -86,7 +86,7 @@ function getdata(){
                            if(data.imageUrl[0] === undefined){
                                PostForm.append('\
                                <div class= "formevent" id= "'+data._id+'">\
-                               <a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="/upload/'+data.idUser.imageUrl+'" alt="">\
+                               <a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="'+data.idUser.imageUrl+'" alt="">\
                                <span>'+data.idUser.name+'</span></a>\
                                <span style="font-size:12px;" class="date">'+data.date+':'+data.time+'</span>\
                                <p class = "write">'+data.writePost+'</p>')
@@ -100,7 +100,7 @@ function getdata(){
                                 
                             }else{
                                 PostForm.append('<div class= "formevent" id= "'+data._id+'"></div>')
-                                $('#'+data._id+'').append('<a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="/upload/'+data.idUser.imageUrl+'" alt="">\
+                                $('#'+data._id+'').append('<a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="'+data.idUser.imageUrl+'" alt="">\
                                 <span>'+data.idUser.name+'</span></a>\
                                 <span  style="font-size:12px;" class="date">'+data.date+':'+data.time+'</span>\
                                  <p class = "write">'+data.writePost+'</p>')
@@ -121,12 +121,12 @@ function getdata(){
                                     if(i === 0){
                                        $('#'+data._id+' .carousel-inner').append('\
                                        <div class="carousel-item active">\
-                 <img class="d-block w-100" src="/upload/'+data.imageUrl[i]+'" alt="First slide">\
+                 <img class="d-block w-100" src="'+data.imageUrl[i]+'" alt="First slide">\
                </div>')
                                     }else{
                                        $('#'+data._id+' .carousel-inner').append('\
                                        <div class="carousel-item">\
-                 <img class="d-block w-100" src="/upload/'+data.imageUrl[i]+'" alt="First slide">\
+                 <img class="d-block w-100" src="'+data.imageUrl[i]+'" alt="First slide">\
                </div>')
                                     }
                                    
@@ -187,7 +187,8 @@ $(document).on('click', '.btnAddPost', function() {
                 alert(response.message)
             }else{
                 alert('đăng thành công');
-                $(".writePost").val("")
+                $(".writePost").val("");
+                $(".imageUrl").val('')
                 getdata(); 
 
             }
@@ -280,6 +281,7 @@ $(document).on('click', '.addcomment', function() {
             time:timenow
         }
         console.log(t)
+        $('.commentPost').val("");
         socket.emit("user-comment",t)
 
     }
@@ -289,7 +291,7 @@ $(document).on('click', '.addcomment', function() {
 
 })
 socket.on("server-comment",function(data){
-    $('.commentnew').append('<div class="datacomment1"><img src="/upload/'+data.imageUrl+'" alt=""><div class= "comment1">\
+    $('.commentnew').append('<div class="datacomment1"><img src="'+data.imageUrl+'" alt=""><div class= "comment1">\
     <p>'+data.name+' <span class="date">'+data.date+':'+data.time+'</span></p>\
                     <p class="commentdata">'+data.commentPost+'</p></div></div>')
 })
@@ -320,7 +322,7 @@ $(document).on('click', '.comment', function() {
 
 
                 for(var i = 0; i < response.data.comment.length; i++){
-                    $('.commentForm').append('<div class="datacomment1"><img src="/upload/'+response.data.comment[i].idUserC.imageUrl+'" alt=""><div class= "comment1" id="'+response.data.comment[i]._id+'"></div></div>')
+                    $('.commentForm').append('<div class="datacomment1"><img src="'+response.data.comment[i].idUserC.imageUrl+'" alt=""><div class= "comment1" id="'+response.data.comment[i]._id+'"></div></div>')
                     $('#'+response.data.comment[i]._id+'').append('<p>'+response.data.comment[i].idUserC.name+' <span class="date">'+response.data.comment[i].date+':'+response.data.comment[i].time+'</span></p>\
                     <p class="commentdata">'+response.data.comment[i].writeComment+'</p>')
 

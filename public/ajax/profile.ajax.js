@@ -18,7 +18,7 @@ $(document).ready(function(){
                 if(response.account.role === 'master'){
                     information.append('\
                          <div class = "left">\
-                         <p><img src="/upload/'+response.account.imageUrl+'" alt=""></p>\
+                         <p><img src="'+response.account.imageUrl+'" alt=""></p>\
                          <p>'+response.account.email+'</p>\
                          <a href="/booking/'+response.account._id+'">Booking</a>\
                          </div>\
@@ -37,7 +37,7 @@ $(document).ready(function(){
                 }else{
                     information.append('\
                          <div class = "left">\
-                         <p><img src="/upload/'+response.account.imageUrl+'" alt=""></p>\
+                         <p><img src="'+response.account.imageUrl+'" alt=""></p>\
                          <p>'+response.account.email+'</p>\
                          </div>\
                          <div class = "right">\
@@ -85,7 +85,7 @@ $(document).ready(function(){
                             if(data.imageUrl[0] === undefined){
                                 PostForm.append('\
                                 <div class= "formevent" id= "'+data._id+'">\
-                                <a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="/upload/'+data.idUser.imageUrl+'" alt="">\
+                                <a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="'+data.idUser.imageUrl+'" alt="">\
                                 <span>'+data.idUser.name+'</span></a>\
                                 <span style="font-size:12px;" class="date">'+data.date+':'+data.time+'</span>\
                                 <p class = "write">'+data.writePost+'</p>')
@@ -97,7 +97,7 @@ $(document).ready(function(){
                                  
                              }else{
                                  PostForm.append('<div class= "formevent" id= "'+data._id+'"></div>')
-                                 $('#'+data._id+'').append('<a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="/upload/'+data.idUser.imageUrl+'" alt="">\
+                                 $('#'+data._id+'').append('<a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="'+data.idUser.imageUrl+'" alt="">\
                                  <span>'+data.idUser.name+'</span></a>\
                                  <span  style="font-size:12px;" class="date">'+data.date+':'+data.time+'</span>\
                                   <p class = "write">'+data.writePost+'</p>')
@@ -118,12 +118,12 @@ $(document).ready(function(){
                                      if(i === 0){
                                         $('#'+data._id+' .carousel-inner').append('\
                                         <div class="carousel-item active">\
-                  <img class="d-block w-100" src="/upload/'+data.imageUrl[i]+'" alt="First slide">\
+                  <img class="d-block w-100" src="'+data.imageUrl[i]+'" alt="First slide">\
                 </div>')
                                      }else{
                                         $('#'+data._id+' .carousel-inner').append('\
                                         <div class="carousel-item">\
-                  <img class="d-block w-100" src="/upload/'+data.imageUrl[i]+'" alt="First slide">\
+                  <img class="d-block w-100" src="'+data.imageUrl[i]+'" alt="First slide">\
                 </div>')
                                      }
                                     
@@ -147,7 +147,7 @@ $(document).ready(function(){
                             if(data.imageUrl[0] === undefined){
                                 PostForm.append('\
                                 <div class= "formevent" id= "'+data._id+'">\
-                                <a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="/upload/'+data.idUser.imageUrl+'" alt="">\
+                                <a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="'+data.idUser.imageUrl+'" alt="">\
                                 <span>'+data.idUser.name+'</span></a>\
                                 <span style="font-size:12px;" class="date">'+data.date+':'+data.time+'</span>\
                                 <p class = "write">'+data.writePost+'</p>')
@@ -161,7 +161,7 @@ $(document).ready(function(){
                                  
                              }else{
                                  PostForm.append('<div class= "formevent" id= "'+data._id+'"></div>')
-                                 $('#'+data._id+'').append('<a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="/upload/'+data.idUser.imageUrl+'" alt="">\
+                                 $('#'+data._id+'').append('<a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="'+data.idUser.imageUrl+'" alt="">\
                                  <span>'+data.idUser.name+'</span></a>\
                                  <span  style="font-size:12px;" class="date">'+data.date+':'+data.time+'</span>\
                                   <p class = "write">'+data.writePost+'</p>')
@@ -182,12 +182,12 @@ $(document).ready(function(){
                                      if(i === 0){
                                         $('#'+data._id+' .carousel-inner').append('\
                                         <div class="carousel-item active">\
-                  <img class="d-block w-100" src="/upload/'+data.imageUrl[i]+'" alt="First slide">\
+                  <img class="d-block w-100" src="'+data.imageUrl[i]+'" alt="First slide">\
                 </div>')
                                      }else{
                                         $('#'+data._id+' .carousel-inner').append('\
                                         <div class="carousel-item">\
-                  <img class="d-block w-100" src="/upload/'+data.imageUrl[i]+'" alt="First slide">\
+                  <img class="d-block w-100" src="'+data.imageUrl[i]+'" alt="First slide">\
                 </div>')
                                      }
                                     
@@ -242,7 +242,7 @@ $(document).ready(function(){
     
     
                     for(var i = 0; i < response.data.comment.length; i++){
-                        $('.commentForm').append('<div class="datacomment1"><img src="/upload/'+response.data.comment[i].idUserC.imageUrl+'" alt=""><div class= "comment1" id="'+response.data.comment[i]._id+'"></div></div>')
+                        $('.commentForm').append('<div class="datacomment1"><img src="'+response.data.comment[i].idUserC.imageUrl+'" alt=""><div class= "comment1" id="'+response.data.comment[i]._id+'"></div></div>')
                         $('#'+response.data.comment[i]._id+'').append('<p>'+response.data.comment[i].idUserC.name+' <span class="date">'+response.data.comment[i].date+':'+response.data.comment[i].time+'</span></p>\
                         <p class="commentdata">'+response.data.comment[i].writeComment+'</p>')
     

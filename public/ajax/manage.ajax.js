@@ -78,7 +78,7 @@ function getdata(role){
        $('tbody').append('\
        <tr class="row">\
        <td>'+ index +'</td>\
-       <td><img src="/upload/'+data.imageUrl+'" alt=""></td>\
+       <td><img src="'+data.imageUrl+'" alt=""></td>\
        <td>'+data.email+'</td>\
        <td>'+data.name+'</td>\
        <td>'+data.role+'</td>\

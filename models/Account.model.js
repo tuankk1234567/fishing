@@ -18,7 +18,7 @@ const AccountSchema = new Schema({
     },
     imageUrl:{
         type: String,
-        default : "Avata.jpeg"
+        default : "https://drive.google.com/uc?export=view&id=1cOpBP5EM2JWPgTVcFhXT8lBNmv9wzyHY"
     },
     phone:String,
     address: String,

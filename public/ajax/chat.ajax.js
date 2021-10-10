@@ -13,7 +13,7 @@ $(document).ready(function(){
             }else{
               for(var i = 0; i < response.data.chat.length; i++){
                 console.log(response.data.chat[i]._id,response.data.chat[i].idMaster.name)
-                   $('.left').append('<div class="list" id = "'+response.data.chat[i]._id+'"> <img class="imgUser" src="/upload/'+response.data.chat[i].idMaster.imageUrl+'" alt=""><span class="name">'+response.data.chat[i].idMaster.name+'</span></div>')
+                   $('.left').append('<div class="list" id = "'+response.data.chat[i]._id+'"> <img class="imgUser" src="'+response.data.chat[i].idMaster.imageUrl+'" alt=""><span class="name">'+response.data.chat[i].idMaster.name+'</span></div>')
 
               }
               if(response.data.chat.length > 0){
@@ -56,7 +56,7 @@ $(document).ready(function(){
                     if(response.data.write[i].idWriter._id === idUser){
                         // $('.msger-chat').append('<div class="csschat1"> <div class= "csschat2"><span>'+response.data.write[i].write+'</span><span>'+response.data.write[i].idWriter.name+'</span></div><img class="imgUser" src="/upload/'+response.data.write[i].idWriter.imageUrl+'" alt=""></div>')
                         $('.msger-chat').append('<div class="msg right-msg">\
-                        <div class="msg-img"><img class="imgUser" src="/upload/'+response.data.write[i].idWriter.imageUrl+'" alt=""></div>\
+                        <div class="msg-img"><img class="imgUser" src="'+response.data.write[i].idWriter.imageUrl+'" alt=""></div>\
                         <div class="msg-bubble">\
                           <div class="msg-info">\
                             <div class="msg-info-name">'+response.data.write[i].idWriter.name+'</div>\
@@ -72,7 +72,7 @@ $(document).ready(function(){
                         // $('.msger-chat').append('<div class="csschat3"> <img class="imgUser" src="/upload/'+response.data.write[i].idWriter.imageUrl+'" alt=""><div class= "csschat4"><span>'+response.data.write[i].idWriter.name+'</span><p>'+response.data.write[i].write+'</p></div></div>')
                         $('.msger-chat').append('\
                         <div class="msg left-msg">\
-      <div class="msg-img"><img class="imgUser" src="/upload/'+response.data.write[i].idWriter.imageUrl+'" alt=""></div>\
+      <div class="msg-img"><img class="imgUser" src="'+response.data.write[i].idWriter.imageUrl+'" alt=""></div>\
       <div class="msg-bubble">\
         <div class="msg-info">\
           <div class="msg-info-name">'+response.data.write[i].idWriter.name+'</div>\
@@ -121,7 +121,7 @@ $(document).ready(function(){
         console.log(data)
         if(data.idUser === idUser){
             $('.chatnew').append('<div class="msg right-msg">\
-            <div class="msg-img"><img class="imgUser" src="/upload/'+data.imageUrl+'" alt=""></div>\
+            <div class="msg-img"><img class="imgUser" src="'+data.imageUrl+'" alt=""></div>\
             <div class="msg-bubble">\
               <div class="msg-info">\
                 <div class="msg-info-name">'+data.name+'</div>\
@@ -137,7 +137,7 @@ $(document).ready(function(){
         }else{
             $('.chatnew').append('\
             <div class="msg left-msg">\
-<div class="msg-img"><img class="imgUser" src="/upload/'+data.imageUrl+'" alt=""></div>\
+<div class="msg-img"><img class="imgUser" src="'+data.imageUrl+'" alt=""></div>\
 <div class="msg-bubble">\
 <div class="msg-info">\
 <div class="msg-info-name">'+data.name+'</div>\

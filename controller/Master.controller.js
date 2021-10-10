@@ -1,6 +1,7 @@
 const AccountModel = require('../models/Account.model')
 const PostModel = require('../models/Post.model')
 var jwt = require('jsonwebtoken');
+const fs = require("fs");
 const TicketVipModel = require('../models/TicketVip.model')
 const TicketModel = require('../models/Ticket.model')
 const ChatModel = require('../models/Chat.model')
@@ -8,7 +9,38 @@ const MasterManageModel = require('../models/masterManage.model')
 const nodemailer = require("nodemailer");
 const multer = require('multer');
 let imageUrl ;
-var image = [];
+
+const { google } = require("googleapis");
+const { response } = require('express');
+const CLIENT_ID = '1062793672536-fgj917nter97kmoouqe88jru6gs13kt1.apps.googleusercontent.com';
+const CLIENT_SECRET ='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';
+const REDIRECT_URL = 'https://developers.google.com/oauthplayground';
+const REFRESH_TOKEN = '1//04I2Xw44VyQT3CgYIARAAGAQSNwF-L9Ir7yo7RkLt5Fh2HyBc9drC06Dlynpg7L7klTQjeSgCBJHj95Y9wxm6a7MkB_Jci6V8OlY';
+const oAuth2Client = new google.auth.OAuth2(
+  CLIENT_ID,
+  CLIENT_SECRET,
+  REDIRECT_URL
+);
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN})
+
+const drive = google.drive({
+  version: 'v3',
+  auth: oAuth2Client
+})
+function getIdFromGoogleDrive(url) {
+    var id = "";
+    var parts = url.split(/^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/);
+    if (url.indexOf('?id=') >= 0){
+       id = (parts[6].split("=")[1]).replace("&usp","");
+       return id;
+     } else {
+     id = parts[5].split("/");
+     //Using sort to get the id as it is the longest element. 
+     var sortArr = id.sort(function(a,b){return b.length - a.length});
+     id = sortArr[0];
+     return id;
+     }
+   }
 
 
   
@@ -25,7 +57,6 @@ var storage = multer.diskStorage({
       
 
          imageUrl = Date.now()+'.jpg'
-         image.push(imageUrl)
       cb(null, imageUrl);
     }
   })
@@ -43,6 +74,100 @@ var transporter =  nodemailer.createTransport({
         rejectUnauthorized: false
     }
     });
+
+    let uploadpost = (req, res) => {
+  
+        upload(req,res,function(err) {
+            var image = [];
+              if(err) {
+                  console.log(err)
+              }
+              if(req.files.length === 0){
+                var datenow = req.body.datenow;
+                var timenow = req.body.timenow;
+                var writePost = req.body.writePost
+            
+                let token = req.cookies.token
+                var idUser = jwt.verify(token,'tuan')
+                var k = {idUser:idUser,writePost:writePost, date:datenow,time:timenow};
+                console.log(k)
+                PostModel.create(k,(err,PostData)=>{
+                  if(err){
+                      console.log(err)
+                  }else{
+                      return res.json({mss:"đăng thành công"})
+                      
+                  }
+              })
+
+              }else{
+                console.log(req.files.length)
+                var count = req.files.length;
+                for(var i = 0; i < req.files.length; i++){
+                  drive.files.create({
+                      requestBody: {
+                        name: imageUrl, //This can be name of your choice
+                        mimeType: 'image/jpg',
+                      },
+                      media: {
+                        mimeType: 'image/jpg',
+                        body: fs.createReadStream(req.files[i].path),
+                      },
+                    },(err,data)=>{
+                        drive.permissions.create({
+                            fileId:data.data.id,
+                            requestBody:{
+                                role: 'reader',
+                                type: 'anyone'
+                            }
+                        })
+                         drive.files.get({
+                            fileId: data.data.id,
+                            fields: 'webViewLink'
+                        },(err,data2)=>{
+                            var idGoogleGoogleDrive = getIdFromGoogleDrive(data2.data.webViewLink);
+                            var link = 'https://drive.google.com/uc?export=view&id=';
+                            var linkImage = link.concat(idGoogleGoogleDrive)
+                            image.push(linkImage);
+                            if(image.length === count){
+            var datenow = req.body.datenow;
+            var timenow = req.body.timenow;
+            var writePost = req.body.writePost
+        
+            let token = req.cookies.token
+            var idUser = jwt.verify(token,'tuan')
+            var k = {idUser:idUser,imageUrl:image, writePost:writePost, date:datenow,time:timenow};
+            console.log(k)
+            PostModel.create(k,(err,PostData)=>{
+              if(err){
+                  console.log(err)
+              }else{
+                while(image.length > 0) {
+                  image.pop();
+                }
+                  return res.json({mss:"đăng thành công"})
+                  
+              }
+          })
+                            }
+                            
+                          
+                        })
+      
+                    });
+                }
+
+              }
+              
+              
+        
+        })
+        
+      
+        
+          
+      
+        }
 let getPostData = (req,res)=>{
     PostModel.find().populate('idUser').populate('comment.idUserC').sort({_id: -1})
     .then(data=>{
@@ -248,37 +373,7 @@ let getPostData = (req,res)=>{
 //         res.json({data:data})
 //     })
 //  }
- let uploadpost = (req, res) => {
-  
-    upload(req,res,function(err) {
-          if(err) {
-              console.log(err)
-          }
-      var writePost = req.body.writePost
-      var datenow = req.body.datenow;
-      var timenow = req.body.timenow;
-  
-      let token = req.cookies.token
-      var idUser = jwt.verify(token,'tuan')
-      var k = {idUser:idUser,imageUrl:image, writePost:writePost, date:datenow,time:timenow};
-      PostModel.create(k,(err,PostData)=>{
-        if(err){
-            console.log(err)
-        }else{
-          while(image.length > 0) {
-            image.pop();
-          }
-            return res.json({mss:"đăng thành công"})
-            
-        }
-    })
-    })
-    
-  
-    
-      
-  
-    }
+
     let getcomment = (req,res)=>{
         var idPost = req.body.idPost;
         PostModel.findOne({_id:idPost}).populate('comment.idUserC').sort({_id: -1})

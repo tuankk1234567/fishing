@@ -3,8 +3,26 @@ const PostModel = require('../models/Post.model')
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 const multer = require('multer');
+const fs = require("fs");
 const saltRounds = 10;
 const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
+const { response } = require('express');
+const CLIENT_ID = '1062793672536-fgj917nter97kmoouqe88jru6gs13kt1.apps.googleusercontent.com';
+const CLIENT_SECRET ='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';
+const REDIRECT_URL = 'https://developers.google.com/oauthplayground';
+const REFRESH_TOKEN = '1//04I2Xw44VyQT3CgYIARAAGAQSNwF-L9Ir7yo7RkLt5Fh2HyBc9drC06Dlynpg7L7klTQjeSgCBJHj95Y9wxm6a7MkB_Jci6V8OlY';
+const oAuth2Client = new google.auth.OAuth2(
+  CLIENT_ID,
+  CLIENT_SECRET,
+  REDIRECT_URL
+);
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN})
+
+const drive = google.drive({
+  version: 'v3',
+  auth: oAuth2Client
+})
 
 let imageUrl;
 var storage = multer.diskStorage({
@@ -158,50 +176,103 @@ let forgotpassword =(req,res)=>{
         }
     })
 }
+function getIdFromGoogleDrive(url) {
+    var id = "";
+    var parts = url.split(/^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/);
+    if (url.indexOf('?id=') >= 0){
+       id = (parts[6].split("=")[1]).replace("&usp","");
+       return id;
+     } else {
+     id = parts[5].split("/");
+     //Using sort to get the id as it is the longest element. 
+     var sortArr = id.sort(function(a,b){return b.length - a.length});
+     id = sortArr[0];
+     return id;
+     }
+   }
+
+
 
 let doupdate = (req,res)=>{
     
 
     upload(req,res,function(err) {
-        var phone = req.body.phone;
-    var address = req.body.address;
-    var name = req.body.name;
-    var bank = req.body.bank;
-    var stk = req.body.stk;
-    var token = req.cookies.token;
-    var _id = jwt.verify(token,'tuan')
-
-
-		if(err) {
-			console.log(err)
-		}
-        if(imageUrl === undefined){
-            AccountModel.updateOne({_id:_id},{
-                phone:phone,
-                address:address,
-                name:name,
-                bank:bank,
-                stk:stk}).then(data=>{
-   
-                })
-           
-
-
+        if(err){
+            console.log(err)
         }else{
-            AccountModel.updateOne({_id:_id},{
-                phone:phone,
-                address:address,
-                name:name,
-                bank:bank,
-                stk:stk,
-                imageUrl:imageUrl}).then(data=>{
-         
-                })
-                
+            drive.files.create({
+                requestBody: {
+                  name: imageUrl, //This can be name of your choice
+                  mimeType: 'image/jpg',
+                },
+                media: {
+                  mimeType: 'image/jpg',
+                  body: fs.createReadStream(req.file.path),
+                },
+              },(err,data)=>{
+                  drive.permissions.create({
+                      fileId:data.data.id,
+                      requestBody:{
+                          role: 'reader',
+                          type: 'anyone'
+                      }
+                  })
+                   drive.files.get({
+                      fileId: data.data.id,
+                      fields: 'webViewLink'
+                  },(err,data2)=>{
+                      var idGoogleGoogleDrive = getIdFromGoogleDrive(data2.data.webViewLink);
+                      var link = 'https://drive.google.com/uc?export=view&id=';
+                      var linkImage = link.concat(idGoogleGoogleDrive)
+                     
+
+                      
+                      var phone = req.body.phone;
+                      var address = req.body.address;
+                      var name = req.body.name;
+                      var bank = req.body.bank;
+                      var stk = req.body.stk;
+                      var token = req.cookies.token;
+                      var _id = jwt.verify(token,'tuan')
+                  
+                  
+                      	if(err) {
+                      		console.log(err)
+                      	}
+                          if(imageUrl === undefined){
+                              AccountModel.updateOne({_id:_id},{
+                                  phone:phone,
+                                  address:address,
+                                  name:name,
+                                  bank:bank,
+                                  stk:stk}).then(data=>{
+                     
+                                  })
+                             
+                  
+                  
+                          }else{
+                              AccountModel.updateOne({_id:_id},{
+                                  phone:phone,
+                                  address:address,
+                                  name:name,
+                                  bank:bank,
+                                  stk:stk,
+                                  imageUrl:linkImage}).then(data=>{
+                           
+                                  })
+                                  
+                          }
+                          AccountModel.findOne({_id:_id},(err,data)=>{
+                              res.json({account:data})
+                          })
+                  })
+
+              });
+
         }
-        AccountModel.findOne({_id:_id},(err,data)=>{
-            res.json({account:data})
-        })
+        
+    //    
         
 
 	});

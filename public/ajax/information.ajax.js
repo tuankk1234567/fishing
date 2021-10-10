@@ -17,7 +17,7 @@ $(document).ready(function(){
                 }else{
                     information.append('\
                          <div class = "left">\
-                         <p><img src="/upload/'+response.account.imageUrl+'" alt=""></p>\
+                         <p><img src="'+response.account.imageUrl+'" alt="Image"></p>\
                          <p>'+response.account.email+'</p>\
                          </p><button type="submit" id="update">Update</button>\
                          </p><button type="submit" id="ChangePassword">Change Password</button>\
