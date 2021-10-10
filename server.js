@@ -2,7 +2,7 @@ const express = require("express");
 const AccountRounter = require("./routers/Account.router");
 const FishingRouter = require("./routers/fishing.router")
 const AdminRouter = require("./routers/Admin.router");
-const MasterRouter = require("./routers/Master.router.js");
+const MasterRouter = require("./Master.router");
 const IndexRouter = require("./routers/index.router")
 
 const app = express();
