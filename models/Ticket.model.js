@@ -11,7 +11,7 @@ const Schema = mongoose.Schema;
 const TicketSchema = new Schema({
     price: String,
     time : String,
-    sentenceTime: String,
+    durationTime: String,
     nameMaster: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'account'

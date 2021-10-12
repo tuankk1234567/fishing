@@ -2,7 +2,7 @@ const AccountModel = require('../models/Account.model')
 const TicketVipModel = require('../models/TicketVip.model')
 const TicketModel = require('../models/Ticket.model')
 const ChatModel = require('../models/Chat.model')
-const MasterManageModel = require('../models/masterManage.model')
+const CalendarModel = require('../models/calendar.model')
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 const multer = require('multer');
@@ -48,7 +48,7 @@ let getdata = (req,res)=>{
 
         })
     }else{
-        AccountModel.find({role:"master",address: {$regex: text,$options : "i"}},(err,data)=>{
+        AccountModel.find({role:"master",$or:[{address: {$regex: text,$options : "i"}},{name: {$regex: text,$options : "i"}}]},(err,data)=>{
             let token = req.cookies.token
             var id = jwt.verify(token,'tuan')
             AccountModel.findOne({_id:id},(err,account)=>{
@@ -89,7 +89,7 @@ let getticketVip = (req,res)=>{
 
     if(token === undefined){
         
-    MasterManageModel.findOne({nameMaster:id}).populate('nameMaster')
+    CalendarModel.findOne({nameMaster:id}).populate('nameMaster')
     .then(data1=>{
         if(data1){
             TicketVipModel.find({nameMaster:id,date:date4,time:timeFishing})
@@ -103,7 +103,7 @@ let getticketVip = (req,res)=>{
 
     }else{
         var idUser = jwt.verify(token,'tuan')
-        MasterManageModel.findOne({nameMaster:id}).populate('nameMaster')
+        CalendarModel.findOne({nameMaster:id}).populate('nameMaster')
     .then(data1=>{
         if(data1){
             TicketVipModel.find({nameMaster:id,date:date4,time:timeFishing})

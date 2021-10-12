@@ -209,7 +209,7 @@ function getdataTicket(){
                     $('.left').append('\
                     <h1>Ticket</h1>\
                     <p>Working time:'+data.time+'</p>\
-                    <p>Duration:'+data.sentenceTime+' hour</p>\
+                    <p>Duration time:'+data.durationTime+' hour</p>\
                     <p>Price: '+data.price+' VND<p/>')
        
                  });

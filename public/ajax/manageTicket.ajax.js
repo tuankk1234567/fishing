@@ -227,8 +227,8 @@ $(document).on('click','.addFormticket',function(){
       <p><input type="time" class="time1" id="time1" name="time1" ></p>\
       <p>Close time:</p>\
     <p><input type="time" class="time2" id="time2" name="time2"></p>\
-    <p>Sentence time:</p>\
-    <p><input type="text" class="time3" id="time3" name="time3" placeholder="Sentence time..." ></p>\
+    <p>Duration time:</p>\
+    <p><input type="text" class="time3" id="time3" name="time3" placeholder="Time fishing..." ></p>\
     <p>Price:</p>\
     <p><input type="text" class="price" name="price" id="price" placeholder="Price..."></p>\
     <button class="btnaddticket">Submit</button>\
@@ -376,7 +376,7 @@ function getdataTicket(){
                     $('.dataticket').append('\
                     <h1>Ticket</h1>\
                     <p>Work time:<input type="text" value="'+data.time+'" class="timeTicket"></p>\
-                    <p>Duration:<input type="text" value="'+data.sentenceTime+'" class="sentenceTime"></p>\
+                    <p>Duration time:<input type="text" value="'+data.durationTime+'" class="durationTime"></p>\
                     <p>Price: <input type="text" value="'+data.price+'" class="price"><p/>')
        
                  });
@@ -469,7 +469,7 @@ $(document).on('click','.btnupdate',function(){
         return;
     }
     var timeTicket = $('.dataticket .timeTicket').val();
-    var sentenceTime = $('.dataticket .sentenceTime').val();
+    var durationTime = $('.dataticket .durationTime').val();
     var price = $('.dataticket .price').val();
     
     var priceMorning = $('.datacalendar .priceMorning').val();
@@ -479,13 +479,13 @@ $(document).on('click','.btnupdate',function(){
     // xóa các thuộc tính 
     $('.dataticket input').attr('style','border:none')
     $('.datacalendar input').attr('style','border:none')
-    if(timeTicket ===''||sentenceTime ===''||price ===''||priceMorning ===''||priceAfternoon ===''||priceNight ===''||numberOfTent ===''){
+    if(timeTicket ===''||durationTime ===''||price ===''||priceMorning ===''||priceAfternoon ===''||priceNight ===''||numberOfTent ===''){
     alert('Enter full information')
     if(timeTicket ===''){
         $('.dataticket .timeTicket').attr('style','border:1px solid red')
     }
-    if(sentenceTime ===''){
-        $('.dataticket .sentenceTime').attr('style','border:1px solid red')
+    if(durationTime ===''){
+        $('.dataticket .durationTime').attr('style','border:1px solid red')
     }
     if(price ===''){
         $('.dataticket .price').attr('style','border:1px solid red')
@@ -512,7 +512,7 @@ $(document).on('click','.btnupdate',function(){
         dataType:'json',
         data:{
             timeTicket:timeTicket,
-            sentenceTime:sentenceTime,
+            durationTime:durationTime,
             price:price,
             priceMorning:priceMorning,
             priceAfternoon:priceAfternoon,

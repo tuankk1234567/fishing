@@ -8,7 +8,7 @@ mongoose.connect(url, {
   });
 
 const Schema = mongoose.Schema;
-const MasterManageSchema = new Schema({
+const CalendarSchema = new Schema({
     priceMorning: String,
     priceAfternoon: String,
     priceNight: String,
@@ -24,5 +24,5 @@ const MasterManageSchema = new Schema({
     collection: 'mastermanage'
 });
 
-var MasterManageModel = mongoose.model('mastermanage', MasterManageSchema);
-module.exports = MasterManageModel
+var CalendarModel = mongoose.model('calendar', CalendarSchema);
+module.exports = CalendarModel

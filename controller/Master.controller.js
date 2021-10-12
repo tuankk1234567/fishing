@@ -5,7 +5,7 @@ const fs = require("fs");
 const TicketVipModel = require('../models/TicketVip.model')
 const TicketModel = require('../models/Ticket.model')
 const ChatModel = require('../models/Chat.model')
-const MasterManageModel = require('../models/masterManage.model')
+const CalendarModel = require('../models/calendar.model')
 const nodemailer = require("nodemailer");
 const multer = require('multer');
 let imageUrl ;
@@ -456,7 +456,7 @@ let getPostData = (req,res)=>{
         var price = req.body.price
         var time = req.body.time
         var time3 = req.body.time3
-        var object = {nameMaster:nameMaster,price:price,time:time,sentenceTime:time3}
+        var object = {nameMaster:nameMaster,price:price,time:time,durationTime:time3}
         TicketModel.find({nameMaster:nameMaster}).then(data=>{
             if(data.length === 1){
                 res.json({message:'đã có vé thường'})
@@ -484,12 +484,12 @@ let getPostData = (req,res)=>{
         var priceNight = req.body.price3
         var numberOfTent = req.body.numberOfTent
         console.log(priceAfternoon)
-        MasterManageModel.findOne({nameMaster:nameMaster})
+        CalendarModel.findOne({nameMaster:nameMaster})
         .then(data=>{
             if(data){
                 res.json({message:'da co'})
             }else{
-                MasterManageModel.create({nameMaster:nameMaster,
+                CalendarModel.create({nameMaster:nameMaster,
                     priceMorning:priceMorning,
                     priceAfternoon:priceAfternoon,
                     priceNight:priceNight,
@@ -507,7 +507,7 @@ let getPostData = (req,res)=>{
     let getdatacalendar = (req,res)=>{
         let token = req.cookies.token
         var nameMaster = jwt.verify(token,'tuan')
-        MasterManageModel.findOne({nameMaster:nameMaster})
+        CalendarModel.findOne({nameMaster:nameMaster})
         .then(data=>{
             console.log(data)
             res.json({data:data})
@@ -516,13 +516,13 @@ let getPostData = (req,res)=>{
     let adddayoff = (req,res)=>{
         let token = req.cookies.token
         var nameMaster = jwt.verify(token,'tuan')
-        MasterManageModel.findOne({nameMaster:nameMaster})
+        CalendarModel.findOne({nameMaster:nameMaster})
         .then(data=>{
             if(data){
                 if(data.dayOff.includes(req.body.dayoff)){
                     res.json({message:'already exist'})
                 }else{
-                    MasterManageModel.updateOne({nameMaster:nameMaster},{$push: {dayOff:req.body.dayoff}})
+                    CalendarModel.updateOne({nameMaster:nameMaster},{$push: {dayOff:req.body.dayoff}})
                 .then(data1=>{
                     console.log(data1)
                     res.json({message:'successfull'})
@@ -540,10 +540,10 @@ let getPostData = (req,res)=>{
     let updatemanageticket =(req,res)=>{
         let token = req.cookies.token;
         var nameMaster = jwt.verify(token,'tuan');
-        TicketModel.updateOne({nameMaster:nameMaster},{price:req.body.price,time:req.body.timeTicket,sentenceTime: req.body.sentenceTime})
+        TicketModel.updateOne({nameMaster:nameMaster},{price:req.body.price,time:req.body.timeTicket,durationTime: req.body.durationTime})
         .then(data=>{
             console.log(data)
-            MasterManageModel.updateOne({nameMaster:nameMaster},{priceMorning:req.body.priceMorning,priceAfternoon:req.body.priceAfternoon,priceNight: req.body.priceNight,numberOfTent: req.body.numberOfTent})
+            CalendarModel.updateOne({nameMaster:nameMaster},{priceMorning:req.body.priceMorning,priceAfternoon:req.body.priceAfternoon,priceNight: req.body.priceNight,numberOfTent: req.body.numberOfTent})
         .then(data1=>{
             console.log(data1)
             res.json({message:'successful'})
@@ -555,7 +555,7 @@ let getPostData = (req,res)=>{
     let deletedayoff = (req,res)=>{
         var token = req.cookies.token;
         var nameMaster = jwt.verify(token,'tuan');
-        MasterManageModel.updateOne({nameMaster:nameMaster},{$pull: {dayOff: req.body.dayoff}})
+        CalendarModel.updateOne({nameMaster:nameMaster},{$pull: {dayOff: req.body.dayoff}})
         .then(data=>{
             console.log(data)
             res.json({message:'successful'})
