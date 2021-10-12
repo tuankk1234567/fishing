@@ -6,7 +6,20 @@ const MasterManageModel = require('../models/masterManage.model')
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 const multer = require('multer');
+const nodemailer = require("nodemailer");
 const saltRounds = 10;
+var transporter =  nodemailer.createTransport({ 
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: 'fishing2479999@gmail.com', 
+        pass: 'Tuan0301kk' 
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+    });
 
 let getpage = (req,res)=>{
 
@@ -129,9 +142,25 @@ let bookingticket =(req,res)=>{
         }else{
             
             TicketVipModel.create({name:name,price:price,date:date,time:time,nameFishing:id,nameMaster:_id,type:'unpaid'},(err,data1)=>{
-                console.log(data1)
-                console.log('có')
-                res.json({message:'successfull'})
+                
+                TicketVipModel.findOne({_id:data1._id}).populate('nameMaster').populate('nameFishing')
+                .then(data2=>{
+                    console.log(data2)
+                    var content = 'you have successfully placed: ' + data2.name + ' ,time:' + data2.date + ': ' +data2.time + ' Address: '+data2.nameMaster.address+'.You can pay online:'+' Bank name:'+ data2.nameMaster.bank+' STK:'+ data2.nameMaster.stk +' Price: ' + data2.price +' VND';
+                    var mainOptions = { 
+                        from: 'fishing2479999@gmail.com',
+                        to: data2.nameFishing.email,  
+                        subject: 'Notification',
+                        text: content 
+                    }
+                    transporter.sendMail(mainOptions, function(err, info){
+                        if (err) {
+                            console.log(err);
+                        }
+                        res.json({message:'successfull'}) 
+                    });
+                })
+                
             })
         }
     })

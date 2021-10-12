@@ -1,5 +1,48 @@
 $(document).ready(function(){
     getdata();
+    var checkUpdate = true;
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+        && (charCode < 48 || charCode > 57))
+            return false;
+    
+        return true;
+    }
+    $(document).on('keyup','.phone',function(){
+        var price = $('.phone').val()
+        if(isNumberKey(price)){
+            $('.phone').attr('style',' color:black')
+            checkUpdate = true;
+        }
+        if(price.length < 8||price.length > 14){
+            $('.phone').attr('style','color:red')
+            checkUpdate = false;
+        }
+        if(!isNumberKey(price)){
+            $('.phone').attr('style','color:red')
+            checkUpdate = false;
+        }
+
+
+    })
+    $(document).on('keyup','.stk',function(){
+        var price = $('.stk').val()
+        if(isNumberKey(price)){
+            $('.stk').attr('style',' color:black')
+            checkUpdate = true;
+        }
+        if(price.length < 8||price.length > 14){
+            $('.stk').attr('style','color:red')
+            checkUpdate = false;
+        }
+        if(!isNumberKey(price)){
+            $('.stk').attr('style','color:red')
+            checkUpdate = false;
+        }
+
+
+    })
     function getdata(){
     
         $.ajax({
@@ -48,11 +91,19 @@ $(document).ready(function(){
         });
     }
     $(document).on('click', '#update', function() {
+        if(checkUpdate === false){
+            alert('You must enter follow form')
+            return;
+        }
         var name = $(".name").val();
         var phone = $(".phone").val();
         var address = $(".address").val();
         var bank = $(".bank").val();
         var stk = $(".stk").val();
+        if(name===''||phone===''||address===''||bank===''||stk===''){
+            alert('You must enter all information')
+            return;
+        }
         var imageUrl = $(".imageUrl").prop('files');
         var formData = new FormData();
         formData.append("name",name);
@@ -77,9 +128,13 @@ $(document).ready(function(){
            enctype: 'multipart/form-data',
            processData: false,
             success:function(response){
+                if(response.message === 'successful'){
+                    alert('successful');
+                    getdata();
+
+                }
                 
-                    alert('đăng thành công');
-                    getdata();    
+                        
             },
             error:function(response){
                      alert('server error')   
@@ -96,22 +151,37 @@ $(document).ready(function(){
         <div class="modal-content">\
           <span class="close">&times;</span>\
           <p class="text"> Change password</p>\
-          <p><label for="pass">Password:</label><input type="password" name="pass" id = "pass"></p>\
-          <p><label for="passnew1">New password:</label><input type="password" name="passnew1" id = "passnew1"></p>\
-          <p><label for="passnew2">New password:</label><input type="password" name="passnew2" id = "passnew2"></p>\
-          <input type="submit" id="btnUpdate" value="Submit">\
+          <p>Password:</p><input type="password" name="pass" id = "pass">\
+          <p>New password:</p><input type="password" name="passnew1" id = "passnew1">\
+          <p>New password:</p><input type="password" name="passnew2" id = "passnew2">\
+           <p><button id="btnUpdate">Submit</button></p>\
           </div>\
       </div>')
 
     })
     $(document).on('click','#btnUpdate',function(){
+        $('.modal input').attr('style','border-bottom:1px solid #2f3640;')
         var pass = $('#pass').val();
         var passnew1 = $('#passnew1').val();
         var passnew2 = $('#passnew2').val();
         if(pass ===''||passnew1 ===''||passnew2===''){
-            alert("hãy nhập vào các chỗ trống ")
+            alert("You must enter all")
+            if(pass ===''){
+                $('.modal #pass').attr('style','border-bottom:1px solid red;')
+            }
+            if(passnew1 ===''){
+                $('.modal #passnew1').attr('style','border-bottom:1px solid red;')
+            }
+            if(passnew2 ===''){
+                $('.modal #passnew2').attr('style','border-bottom:1px solid red;')
+            }
+            return;
+            
         }else if(passnew1 != passnew2){
-            alert('2 mã không giống')
+            alert('Password new error')
+            $('.modal #passnew1').attr('style','border-bottom:1px solid red;')
+            $('.modal #passnew2').attr('style','border-bottom:1px solid red;')
+            return;
         }else{
             $.ajax({
                 url:'/account/dochangepass',
@@ -124,7 +194,7 @@ $(document).ready(function(){
                 success:function(response){
                     console.log(response.mss)
                     
-                    if(response.mss === "Mật khẩu không đúng"){
+                    if(response.mss === "Incorrect password"){
                         alert(response.mss)
                     }else{
                         $('.formchange').empty();

@@ -2,7 +2,7 @@
 $(document).ready(function() {
     getdata();
 
-    $(document).on('keydown','#search',function(){
+    $(document).on('keyup','#search',function(){
         var text = $(this).val();
         console.log(text)
         getdata(text);

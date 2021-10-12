@@ -38,7 +38,7 @@ var storage = multer.diskStorage({
          
     }
   })
-    var upload = multer({ storage: storage }).single("imageUrl");
+    var upload = multer({ storage: storage }).array('imageUrl',1);
  
 
 var transporter =  nodemailer.createTransport({ 
@@ -155,7 +155,7 @@ let forgotpassword =(req,res)=>{
             AccountModel.update({email:email},{password:hash}).then(data=>{
                 
             })
-            var content = 'Mật khẩu mới của bạn là: ' + password;
+            var content = 'Your new password is: ' + password;
                 var mainOptions = { 
                     from: 'fishing2479999@gmail.com',
                     to: email,  
@@ -167,12 +167,12 @@ let forgotpassword =(req,res)=>{
                         console.log(err);
                     } 
                 });
-                res.json({mss:"Mật khẩu của bạn đã được gửi về mail"})
+                res.json({mss:"Your password has been sent to your email"})
 
 
         }
         else{
-            res.json({mss:"tai khoan khong ton tai"})
+            res.json({mss:"Account does not exist"})
         }
     })
 }
@@ -200,75 +200,81 @@ let doupdate = (req,res)=>{
         if(err){
             console.log(err)
         }else{
-            drive.files.create({
-                requestBody: {
-                  name: imageUrl, //This can be name of your choice
-                  mimeType: 'image/jpg',
-                },
-                media: {
-                  mimeType: 'image/jpg',
-                  body: fs.createReadStream(req.file.path),
-                },
-              },(err,data)=>{
-                  drive.permissions.create({
-                      fileId:data.data.id,
-                      requestBody:{
-                          role: 'reader',
-                          type: 'anyone'
-                      }
-                  })
-                   drive.files.get({
-                      fileId: data.data.id,
-                      fields: 'webViewLink'
-                  },(err,data2)=>{
-                      var idGoogleGoogleDrive = getIdFromGoogleDrive(data2.data.webViewLink);
-                      var link = 'https://drive.google.com/uc?export=view&id=';
-                      var linkImage = link.concat(idGoogleGoogleDrive)
-                     
-
-                      
-                      var phone = req.body.phone;
+            var phone = req.body.phone;
                       var address = req.body.address;
                       var name = req.body.name;
                       var bank = req.body.bank;
                       var stk = req.body.stk;
                       var token = req.cookies.token;
                       var _id = jwt.verify(token,'tuan')
-                  
-                  
-                      	if(err) {
-                      		console.log(err)
-                      	}
-                          if(imageUrl === undefined){
-                              AccountModel.updateOne({_id:_id},{
-                                  phone:phone,
-                                  address:address,
-                                  name:name,
-                                  bank:bank,
-                                  stk:stk}).then(data=>{
-                     
-                                  })
-                             
-                  
-                  
-                          }else{
-                              AccountModel.updateOne({_id:_id},{
-                                  phone:phone,
-                                  address:address,
-                                  name:name,
-                                  bank:bank,
-                                  stk:stk,
-                                  imageUrl:linkImage}).then(data=>{
-                           
-                                  })
-                                  
+                    console.log(address,req.files.length)
+            if(req.files.length === 0){
+                AccountModel.updateOne({_id:_id},{
+                    phone:phone,
+                    address:address,
+                    name:name,
+                    bank:bank,
+                    stk:stk}).then(data=>{
+                        res.json({message:'successful'})
+       
+                    })
+               
+    
+    
+            }else{
+                drive.files.create({
+                    requestBody: {
+                      name: imageUrl, //This can be name of your choice
+                      mimeType: 'image/jpg',
+                    },
+                    media: {
+                      mimeType: 'image/jpg',
+                      body: fs.createReadStream(req.file.path),
+                    },
+                  },(err,data)=>{
+                      drive.permissions.create({
+                          fileId:data.data.id,
+                          requestBody:{
+                              role: 'reader',
+                              type: 'anyone'
                           }
-                          AccountModel.findOne({_id:_id},(err,data)=>{
-                              res.json({account:data})
-                          })
-                  })
+                      })
+                       drive.files.get({
+                          fileId: data.data.id,
+                          fields: 'webViewLink'
+                      },(err,data2)=>{
+                          var idGoogleGoogleDrive = getIdFromGoogleDrive(data2.data.webViewLink);
+                          var link = 'https://drive.google.com/uc?export=view&id=';
+                          var linkImage = link.concat(idGoogleGoogleDrive)
+                         
+    
+                          
+                          
+                      
+                      
+                              if(err) {
+                                  console.log(err)
+                              }
+                             
+                                  AccountModel.updateOne({_id:_id},{
+                                      phone:phone,
+                                      address:address,
+                                      name:name,
+                                      bank:bank,
+                                      stk:stk,
+                                      imageUrl:linkImage}).then(data=>{
+                                        res.json({message:'successful'})
+                                      })
+                                      
+                              
+                              
+                      })
+    
+                  });
 
-              });
+            }
+            
+            
 
         }
         
@@ -297,11 +303,11 @@ let dochangepass = (req,res)=>{
                 const salt = bcrypt.genSaltSync(saltRounds);
                 const hash = bcrypt.hashSync(passnew1, salt);
                 AccountModel.updateOne({_id:_id},{password:hash},(err,data)=>{
-                    res.json({mss:'Đổi mật khẩu thành công'})
+                    res.json({mss:'Change password successfully'})
                 })
 
             }else{
-                res.json({mss:"Mật khẩu không đúng"})
+                res.json({mss:"Incorrect password"})
             }
         })
     })

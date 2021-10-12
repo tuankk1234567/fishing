@@ -11,7 +11,7 @@ mongoose.connect(url, {
 const Schema = mongoose.Schema;
 const TicketVipSchema = new Schema({
     name: String,
-    price: Number,
+    price: String,
     date: String,
     time : String,
     nameFishing: {

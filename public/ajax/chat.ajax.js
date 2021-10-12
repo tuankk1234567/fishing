@@ -103,6 +103,10 @@ $(document).ready(function(){
     var imageUrl = $('#imageUrl').val();
     var name = $('#name').val();
     var idUser = $('#idUser').val();
+    if(chat === ''){
+      alert('You must enter chat')
+      return;
+    }
     t = {
         idUser:idUser,
         id:id,

@@ -169,6 +169,10 @@ $(document).on('click', '.btnAddPost', function() {
     for(var i = 0;i < imageUrl.length; i++){
         formData.append("imageUrl",imageUrl[i])
     }
+    if(writePost===''){
+        alert('You must write post')
+        return;
+    }
 
     
 
@@ -264,6 +268,10 @@ $(document).on('click', '.addcomment', function() {
     var idPost = $(this).val();
     // var commentPost = $('#'+idPost+' input').val()
     var commentPost = $('.commentPost').val();
+    if(commentPost === ''){
+        alert('You must write comment')
+        return
+    }
     var imageUrl = $('#imageUrl').val();
     var name = $('#name').val();
     var idUser = $('#idUser').val();

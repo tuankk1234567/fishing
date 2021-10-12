@@ -9,7 +9,7 @@ mongoose.connect(url, {
 
 const Schema = mongoose.Schema;
 const TicketSchema = new Schema({
-    price: Number,
+    price: String,
     time : String,
     sentenceTime: String,
     nameMaster: {

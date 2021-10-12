@@ -9,9 +9,9 @@ mongoose.connect(url, {
 
 const Schema = mongoose.Schema;
 const MasterManageSchema = new Schema({
-    priceMorning: Number,
-    priceAfternoon: Number,
-    priceNight: Number,
+    priceMorning: String,
+    priceAfternoon: String,
+    priceNight: String,
     numberOfTent : Number,
     dayOff:[String],
     nameMaster: {

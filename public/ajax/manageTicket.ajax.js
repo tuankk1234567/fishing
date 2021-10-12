@@ -2,6 +2,8 @@
 
 $(document).ready(function() {
     document.getElementById("date4").valueAsDate = new Date();
+    var checkUpdate = true;
+    var  checkForm = true;
     
     var today2 = new Date();
     var datenow = today2.getFullYear()+'-'+(today2.getMonth()+1).toString().padStart(2, "0")+'-'+today2.getDate().toString().padStart(2, "0"); 
@@ -9,7 +11,197 @@ $(document).ready(function() {
     getdataTicketVip(datenow,timeFishing);
     getdataTicket();
     getdatacalendar();
+//vadidate update
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+        && (charCode < 48 || charCode > 57))
+            return false;
+    
+        return true;
+    }
+    $(document).on('keyup','.dataticket .price',function(){
+        var price = $('.dataticket .price').val()
+        if(isNumberKey(price)){
+            $('.dataticket .price').attr('style',' border:none')
+            checkUpdate = true;
+        }
+        if(!isNumberKey(price)){
+            $('.dataticket .price').attr('style','border:1px solid red')
+            checkUpdate = false;
+        }
+        var priceUpdate = price.replace(/,/g, '')
+        console.log(priceUpdate)
+        
+        var priceUpdate = numberWithCommas(priceUpdate);
+        
 
+           
+        $('.dataticket .price').val(''+priceUpdate+'')
+
+
+    })
+    $(document).on('keyup','.datacalendar .priceMorning',function(){
+        var price = $('.datacalendar .priceMorning').val()
+        if(isNumberKey(price)){
+            $('.datacalendar .priceMorning').attr('style',' border:none')
+            checkUpdate = true;
+        }
+        if(!isNumberKey(price)){
+            $('.datacalendar .priceMorning').attr('style','border:1px solid red')
+            checkUpdate = false;
+        }
+        var priceUpdate = price.replace(/,/g, '')
+        console.log(priceUpdate)      
+        var priceUpdate = numberWithCommas(priceUpdate);      
+        $('.datacalendar .priceMorning').val(''+priceUpdate+'')
+
+
+    })
+    $(document).on('keyup','.datacalendar .priceAfternoon',function(){
+        var price = $('.datacalendar .priceAfternoon').val()
+        if(isNumberKey(price)){
+            $('.datacalendar .priceAfternoon').attr('style',' border:none')
+            checkUpdate = true;
+        }
+        if(!isNumberKey(price)){
+            $('.datacalendar .priceAfternoon').attr('style','border:1px solid red')
+            checkUpdate = false;
+        }
+        var priceUpdate = price.replace(/,/g, '')
+        console.log(priceUpdate)
+        
+        var priceUpdate = numberWithCommas(priceUpdate);
+        
+
+           
+        $('.datacalendar .priceAfternoon').val(''+priceUpdate+'')
+
+
+    })
+    $(document).on('keyup','.datacalendar .priceNight',function(){
+        var price = $('.datacalendar .priceNight').val()
+        if(isNumberKey(price)){
+            $('.datacalendar .priceNight').attr('style',' border:none')
+            checkUpdate = true;
+        }
+        if(!isNumberKey(price)){
+            $('.datacalendar .priceNight').attr('style','border:1px solid red')
+            checkUpdate = false;
+        }
+        var priceUpdate = price.replace(/,/g, '')
+        console.log(priceUpdate)
+        
+        var priceUpdate = numberWithCommas(priceUpdate);
+        
+
+           
+        $('.datacalendar .priceNight').val(''+priceUpdate+'')
+
+
+    })
+    //vadidate form add
+    $(document).on('keyup','.formAdd .price',function(){
+        var price = $('.formAdd .price').val()
+        if(isNumberKey(price)){
+            $('.formAdd .price').attr('style',' border:none')
+            checkForm = true;
+        }
+        if(!isNumberKey(price)){
+            $('.formAdd .price').attr('style','border:1px solid red')
+            checkForm = false;
+        }
+        var priceUpdate = price.replace(/,/g, '')
+        console.log(priceUpdate)
+        
+        var priceUpdate = numberWithCommas(priceUpdate);
+        
+
+           
+        $('.formAdd .price').val(''+priceUpdate+'')
+
+
+    })
+    $(document).on('keyup','.formAdd .time3',function(){
+        var price = $('.formAdd .time3').val()
+        if(isNumberKey(price)){
+            $('.formAdd .time3').attr('style',' border:none')
+            checkForm = true;
+        }
+        if(!isNumberKey(price)){
+            $('.formAdd .time3').attr('style','border:1px solid red')
+            checkForm = false;
+        }
+
+
+
+    })
+    $(document).on('keyup','#price1',function(){
+        var price = $('#price1').val()
+        if(isNumberKey(price)){
+            $('#price1').attr('style',' border:none')
+            checkForm = true;
+        }
+        if(!isNumberKey(price)){
+            $('#price1').attr('style','border:1px solid red')
+            checkForm = false;
+        }
+        var priceUpdate = price.replace(/,/g, '')
+        console.log(priceUpdate)      
+        var priceUpdate = numberWithCommas(priceUpdate);      
+        $('#price1').val(''+priceUpdate+'')
+
+
+    })
+    $(document).on('keyup','#price2',function(){
+        var price = $('#price2').val()
+        if(isNumberKey(price)){
+            $('#price2').attr('style',' border:none')
+            checkForm = true;
+        }
+        if(!isNumberKey(price)){
+            $('#price2').attr('style','border:1px solid red')
+            checkForm = false;
+        }
+        var priceUpdate = price.replace(/,/g, '')
+        console.log(priceUpdate)
+        
+        var priceUpdate = numberWithCommas(priceUpdate);
+        
+
+           
+        $('#price2').val(''+priceUpdate+'')
+
+
+    })
+    
+    $(document).on('keyup','#price3',function(){
+        var price = $('#price3').val()
+        if(isNumberKey(price)){
+            $('#price3').attr('style',' border:none')
+            checkForm = true;
+        }
+        if(!isNumberKey(price)){
+            $('#price3').attr('style','border:1px solid red')
+            checkForm = false;
+        }
+        var priceUpdate = price.replace(/,/g, '')
+        console.log(priceUpdate)
+        
+        var priceUpdate = numberWithCommas(priceUpdate);
+        
+
+           
+        $('#price3').val(''+priceUpdate+'')
+
+
+    })
+
+
+//function
 $(document).on('change','#date4',function(){
     var date4 = $(this).val();
     var timeFishing = $('#timeFishing').val();
@@ -32,25 +224,26 @@ $(document).on('click','.addFormticket',function(){
       <span class="close">&times;</span>\
       <p class="text"> Add ticket</p>\
       <p>Open time:</p>\
-      <p><input type="time" class="time1" id="time1" name="time1"></p>\
+      <p><input type="time" class="time1" id="time1" name="time1" ></p>\
       <p>Close time:</p>\
     <p><input type="time" class="time2" id="time2" name="time2"></p>\
     <p>Sentence time:</p>\
-    <p><input type="text" class="time3" id="time3" name="time3" placeholder="Sentence time..."></p>\
+    <p><input type="text" class="time3" id="time3" name="time3" placeholder="Sentence time..." ></p>\
     <p>Price:</p>\
-    <p><input type="number" class="price" name="price" id="price" placeholder="Price..."></p>\
+    <p><input type="text" class="price" name="price" id="price" placeholder="Price..."></p>\
     <button class="btnaddticket">Submit</button>\
       </div>\
   </div>')
 })
+
 
 $(document).on('click','.addFormCalendar',function(){
     $('.formAdd').append('<div id="myModal" class="modal">\
     <div class="modal-content-2">\
       <span class="close">&times;</span>\
       <p class="text"> Add ticket</p>\
-      <p><label for="price1">Price(8 am to 12 am):</label><input type="number" class="price1" id="price1" name="price1" placeholder="Price(8 am to 12 am)"></p>\
-    <p><label for="price2">Price(2 pm to 6 pm):</label><input type="number" class="price2" id="price2" name="price2" placeholder="Price(2 pm to 6 pm)"></p>\
+      <p><label for="price1">Price(8 am to 12 am):</label><input type="text" class="price1" id="price1" name="price1" placeholder="Price(8 am to 12 am)"></p>\
+    <p><label for="price2">Price(2 pm to 6 pm):</label><input type="text" class="price2" id="price2" name="price2" placeholder="Price(2 pm to 6 pm)"></p>\
     <p><label for="price3">Price(7 pm to 11 pm):</label><input type="text" class="price3" id="price3" name="price3" placeholder="Price(7 pm to 11 pm)"></p>\
     <p><label for="numberOfTent">Number tent</label><input type="number" class="numberOfTent" name="numberOfTent" id="numberOfTent" placeholder="Tent"></p>\
     <button class="btnaddCalendar">Submit</button>\
@@ -271,6 +464,10 @@ if(confirm("Bạn có muốn xóa không?") == true){
 }
 });
 $(document).on('click','.btnupdate',function(){
+    if(checkUpdate === false){
+        alert('You must enter follow form')
+        return;
+    }
     var timeTicket = $('.dataticket .timeTicket').val();
     var sentenceTime = $('.dataticket .sentenceTime').val();
     var price = $('.dataticket .price').val();
@@ -279,7 +476,36 @@ $(document).on('click','.btnupdate',function(){
     var priceAfternoon = $('.datacalendar .priceAfternoon').val();
     var priceNight = $('.datacalendar .priceNight').val();
     var numberOfTent = $('.datacalendar .numberOfTent').val();
-    console.log(timeTicket,sentenceTime,price,priceMorning,priceAfternoon,priceNight,numberOfTent)
+    // xóa các thuộc tính 
+    $('.dataticket input').attr('style','border:none')
+    $('.datacalendar input').attr('style','border:none')
+    if(timeTicket ===''||sentenceTime ===''||price ===''||priceMorning ===''||priceAfternoon ===''||priceNight ===''||numberOfTent ===''){
+    alert('Enter full information')
+    if(timeTicket ===''){
+        $('.dataticket .timeTicket').attr('style','border:1px solid red')
+    }
+    if(sentenceTime ===''){
+        $('.dataticket .sentenceTime').attr('style','border:1px solid red')
+    }
+    if(price ===''){
+        $('.dataticket .price').attr('style','border:1px solid red')
+    }
+    if(priceMorning ===''){
+        $('.datacalendar .priceMorning').attr('style','border:1px solid red')
+    }
+    if(priceAfternoon ===''){
+        $('.datacalendar .priceAfternoon').attr('style','border:1px solid red')
+    }
+    if(priceNight ===''){
+        $('.datacalendar .priceNight').attr('style','border:1px solid red')
+    }
+    if(numberOfTent ===''){
+        $('.datacalendar .numberOfTent').attr('style','border:1px solid red')
+    }
+
+    return;
+    }
+    
     $.ajax({
         url:'/master/updatemanageticket',
         method:'post',
@@ -320,7 +546,10 @@ $(document).on('click','.btnupdate',function(){
 
 $(document).on('click','.btnadddayoff',function(){
     var dayoff = $(".dayoff").val();
-    console.log(dayoff)
+    if(dayoff === ''){
+        $(".dayoff").attr('style','border:1px solid red')
+        return
+    }
     $.ajax({
         url:'/master/adddayoff',
         method:'post',
@@ -377,12 +606,37 @@ if(confirm("Bạn có muốn xóa không?") == true){
 }
 });
 $(document).on('click','.btnaddticket',function(){
+    if(checkForm === false){
+        alert('You must enter follow form')
+        return;
+    }
     var time1 = $("#time1").val();
     var time2 = $("#time2").val();
     var time3 = $("#time3").val();
     var time = time1 + " to "+ time2;
     var price = $("#price").val();
-    console.log(time,price)
+    $('.formAdd input').attr('style','border:none')
+    if(time1===''||time2===''||time3===''||price===''){
+        alert('Enter full information')
+        if(time1===''){
+            $("#time1").attr('style','border:1px solid red')
+
+        }
+        if(time2===''){
+            $("#time2").attr('style','border:1px solid red')
+
+        }
+        if(time3===''){
+            $("#time3").attr('style','border:1px solid red')
+
+        }
+        if(price===''){
+            $("#price").attr('style','border:1px solid red')
+
+        }
+        return;
+
+    }
     $.ajax({
         url:'/master/addticket',
         method:'post',
@@ -413,10 +667,31 @@ $(document).on('click','.btnaddticket',function(){
 })
 
 $(document).on('click','.btnaddCalendar',function(){
+    if(checkForm === false){
+        alert('You must enter follow form')
+        return;
+    }
+    $('.formAdd input').attr('style','border:none')
     var price1 = $("#price1").val();
     var price2 = $("#price2").val();
     var price3 = $("#price3").val();
     var numberOfTent = $('#numberOfTent').val();
+    if(price1===''||price2===''||price3===''||numberOfTent===''){
+        alert('Enter full information')
+        if(price1===''){
+            $("#price1").attr('style','border:1px solid red')
+        }
+        if(price2===''){
+            $("#price2").attr('style','border:1px solid red')
+        }
+        if(price3===''){
+            $("#price3").attr('style','border:1px solid red')
+        }
+        if(numberOfTent===''){
+            $("#numberOfTent").attr('style','border:1px solid red')
+        }
+        return;
+    }
     console.log(price1)
     $.ajax({
         url:'/master/addcalendar',

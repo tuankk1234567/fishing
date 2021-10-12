@@ -150,35 +150,40 @@
     border: 1px solid #888;
     border-radius: 20px;
     width: 280px;
-    height: 170px;
-    text-align: center;
+    height: 290px;
   }
   
-  .modal .modal-content input{
-    margin-top: 10px;
+
+
+  .text{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
   }
-  #btn1,#btnUpdate2{
-      font-size: 13px;
-      height: 30px;
-      width: 70px;
-      border-radius: 7px;
-      margin-top: 5px;
+
+  .modal input{
+    border: none;
+    border-bottom:1px solid #2f3640;
+    width: 100%;
+    height: 35px;
+    margin-top: 5px;
+    outline: none;
   }
- #pass{
-   margin-left: 11%;
- }
- .text{
-   font-size: 30px;
- }
- #btnupdate{
-   width: 70px;
-   height: 30px;
-   border-radius: 10px;
-   cursor: pointer;
-   border: none;
-   background-color: #000;
-   color: whitesmoke;
- }
+  .modal #btnUpdate{
+    width: 110px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #2f3640;
+    cursor: pointer;
+    position: absolute;
+    margin: 20px auto auto 5%;
+  }
+  .modal #btnUpdate:hover{
+    transform: scale(0.95);
+  }
+
   
   
   .close {

@@ -101,7 +101,6 @@ var transporter =  nodemailer.createTransport({
               })
 
               }else{
-                console.log(req.files.length)
                 var count = req.files.length;
                 for(var i = 0; i < req.files.length; i++){
                   drive.files.create({
