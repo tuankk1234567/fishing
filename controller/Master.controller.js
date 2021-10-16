@@ -168,11 +168,30 @@ var transporter =  nodemailer.createTransport({
       
         }
 let getPostData = (req,res)=>{
-    PostModel.find().populate('idUser').populate('comment.idUserC').sort({_id: -1})
-    .then(data=>{
-        
-        res.json({data:data})
+    var skip = Number(req.body.skip);
+    var limit = Number(req.body.limit);
+    PostModel.find().then(data1=>{
+        if(data1.length - skip > limit){
+            PostModel.find().populate('idUser').populate('comment.idUserC').skip(skip).limit(limit).sort({_id: -1})
+            .then(data=>{
+                if(skip === 0){
+                    res.json({data:data,btn:'0'})
+                }else{
+                    res.json({data:data,btn:'1'})
+                }
+                
+            })
+        }else{
+            limit = data1.length - skip;
+            PostModel.find().populate('idUser').populate('comment.idUserC').skip(skip).limit(limit).sort({_id: -1})
+            .then(data=>{
+                res.json({data:data,btn:'2'})
+            })
+        }
+
     })
+
+    
 }
 //  let addtable = (req,res)=>{
 //     let token = req.cookies.token

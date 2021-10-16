@@ -1,20 +1,22 @@
 
 $(document).ready(function() {
-    
-getdata();
+    var skip = 0;
+    var limit = 7;
+    var lesson = false; 
+getdata(skip,limit);
 
 
-function getdata(){
+
+function getdata(skip,limit){
     var idUser = $('#idUser').val();
     var role = $('#role').val();
-    console.log(role)
     $.ajax({
         url:'/master/getPostData',
-        method:'get',
+        method:'post',
         dataType:'json',
+        data:{skip:skip,limit:limit},
         success:function(response){
             console.log(response.data)
-            $('.PostForm').empty();
             var PostForm = $('.PostForm');
 
                 PostForm.html('');
@@ -143,7 +145,22 @@ function getdata(){
                         
            
                     });
+                    if(response.btn === '0'){
+                        PostForm.append('<div class="page"><button class="Next" value="">Next</button></div> ')
+
+                    }
+                    if(response.btn === '2'){
+                        PostForm.append('<div class="page"><button class="Previous" value="">Previous</button></div>')
+
+                    }
+                    if(response.btn === '1'){
+                        PostForm.append('<div class="page"><button class="Previous" value="">Previous</button> \
+                        <button class="Next" value="">Next</button></div> ')
+
+                    }
+
                  PostForm.append('<div class="commentForm1"></div>')
+                 
              
         },
         error:function(response){
@@ -151,6 +168,26 @@ function getdata(){
         }
     });
 }
+$(document).on('click','.Previous',function(){
+    if(lesson) return;
+    skip = skip - limit;
+    lesson = true;
+
+    getdata(skip,limit);
+    lesson = false;
+    
+
+})
+$(document).on('click','.Next',function(){
+    if(lesson) return;
+    
+
+    skip = skip + limit;
+    lesson = true;
+    getdata(skip,limit);
+    lesson = false;
+
+})
 
 $(document).on('click', '.btnAddPost', function() {
     var today= new Date();
@@ -180,7 +217,7 @@ $(document).on('click', '.btnAddPost', function() {
        enctype: 'multipart/form-data',
        processData: false,
         success:function(response){
-            
+            $('.PostForm').empty();
                 alert('đăng thành công');
                 getdata();    
         },
@@ -304,7 +341,7 @@ $(document).on('click','.delete',function(){
             data:{idPost:idPost},
             success:function(response){
                     alert('data deleted');
-                    getdata();    
+                    getdata(skip,limit);    
             },
             error:function(response){
                      alert('server error')   

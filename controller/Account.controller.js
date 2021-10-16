@@ -229,7 +229,7 @@ let doupdate = (req,res)=>{
                     },
                     media: {
                       mimeType: 'image/jpg',
-                      body: fs.createReadStream(req.file.path),
+                      body: fs.createReadStream(req.files[0].path),
                     },
                   },(err,data)=>{
                       drive.permissions.create({

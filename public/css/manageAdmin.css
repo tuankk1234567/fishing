@@ -196,3 +196,12 @@
   .btnaddform:hover{
     transform: scale(0.9);
   }
+  #search{
+    height: 35px;
+    width: 380px;
+    border-radius: 10px;
+    margin: 30px auto auto 20px;
+  }
+  .searchForm .fas{
+    margin-left: -20px;
+  }

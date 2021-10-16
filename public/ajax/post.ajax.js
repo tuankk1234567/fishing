@@ -2,7 +2,10 @@ var socket = io()
 
 $(document).ready(function() {
     
-getdata();
+    var skip = 0;
+    var limit = 7;
+    var lesson = false; 
+getdata(skip,limit);
 
 
 function getdata(){
@@ -11,17 +14,16 @@ function getdata(){
     console.log(role)
     $.ajax({
         url:'/master/getPostData',
-        method:'get',
+        method:'post',
         dataType:'json',
+        data:{skip:skip,limit:limit},
         success:function(response){
             console.log(response.data)
-            $('.PostForm').empty();
             var PostForm = $('.PostForm');
 
                 PostForm.html('');
+                
 
-                 
-                    $('.PostForm').show();
                     $.each(response.data,function(index,data){
                         if(role === 'admin' || data.idUser._id === idUser){
                            if(data.imageUrl[0] === undefined){
@@ -146,6 +148,21 @@ function getdata(){
                         
            
                     });
+                    if(response.btn === '0'){
+                        PostForm.append('<div class="page"><button class="Next" value="">Next</button></div> ')
+
+                    }
+                    if(response.btn === '2'){
+                        PostForm.append('<div class="page"><button class="Previous" value="">Previous</button></div>')
+
+                    }
+                    if(response.btn === '1'){
+                        PostForm.append('<div class="page"><button class="Previous" value="">Previous</button> \
+                        <button class="Next" value="">Next</button></div> ')
+
+                    }
+                   
+
                  PostForm.append('<div class="commentForm1"></div>')
              
         },
@@ -154,6 +171,27 @@ function getdata(){
         }
     });
 }
+
+$(document).on('click','.Previous',function(){
+    if(lesson) return;
+    skip = skip - limit;
+    lesson = true;
+
+    getdata(skip,limit);
+    lesson = false;
+    
+
+})
+$(document).on('click','.Next',function(){
+    if(lesson) return;
+    
+
+    skip = skip + limit;
+    lesson = true;
+    getdata(skip,limit);
+    lesson = false;
+
+})
 
 $(document).on('click', '.btnAddPost', function() {
     var today= new Date();
@@ -190,10 +228,11 @@ $(document).on('click', '.btnAddPost', function() {
             if(response.message === 'You must login'){
                 alert(response.message)
             }else{
-                alert('đăng thành công');
+                alert('Succesful');
                 $(".writePost").val("");
                 $(".imageUrl").val('')
-                getdata(); 
+                skip = 0;
+                getdata(skip,limit); 
 
             }
             
@@ -352,7 +391,7 @@ $(document).on('click','.close',function(){
 })
 $(document).on('click','.delete',function(){
     var idPost = $(this).val();
-    if(confirm("Bạn có muốn xóa bai viet này không?") == true){
+    if(confirm("Do you want to delete this post?") == true){
         $.ajax({
             url:'/admin/deletePost',
             method:'delete',
@@ -360,7 +399,7 @@ $(document).on('click','.delete',function(){
             data:{idPost:idPost},
             success:function(response){
                     alert('data deleted');
-                    getdata();    
+                    getdata(skip,limit);    
             },
             error:function(response){
                      alert('server error')   

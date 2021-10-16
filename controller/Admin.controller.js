@@ -8,11 +8,20 @@ const saltRounds = 10;
 
 let getAccount = (req,res)=>{
     var role = req.body.role;
-    
-    AccountModel.find({role:role})
-    .then(data=>{
-        res.json({mss:"thanh cong",data:data})
-    })
+    var text = req.body.text;
+    if(text === undefined || text === ""){
+        AccountModel.find({role:role},(err,data)=>{
+                res.json({data:data})      
+
+        })
+    }else{
+        AccountModel.find({role:role,$or:[{email: {$regex: text,$options : "i"}},{name: {$regex: text,$options : "i"}}]},(err,data)=>{
+            res.json({data:data}) 
+
+        })
+
+
+    }
 }
 let deleteAccount = (req,res)=>{
 

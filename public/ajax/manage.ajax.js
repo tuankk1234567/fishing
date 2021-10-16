@@ -3,6 +3,7 @@ $(document).ready(function() {
     var checkEmail = true;
     var checkPhone = true;
     var checkStk = true;
+    var text;   
 function isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
     if (charCode != 46 && charCode > 31
@@ -65,7 +66,7 @@ $(document).on('keyup','#stk',function(){
 
 
 var role = "fishing"
-getdata(role);
+getdata(text,role);
 
 $(document).on('click','#addbtn',function(){
     if(checkEmail === false,checkPhone === false,checkStk === false){
@@ -143,19 +144,27 @@ $(document).on('click','#addbtn',function(){
 
 $(document).on('change','#role',function(){
     var role = $(this).val();
-    console.log(role)
-    getdata(role);
+    console.log(text,role)
+    getdata(text,role);
+    
+    
+ } );
+ $(document).on('keyup','#search',function(){
+    var text = $(this).val();
+    var role = $('#role').val();
+    console.log(text,role);
+    getdata(text,role);
     
     
  } );
 
-function getdata(role){
+function getdata(text,role){
     
     $.ajax({
         url:'/admin/getaccount',
         method:'post',
         dataType:'json',
-        data:{role:role},
+        data:{text:text,role:role},
         success:function(response){
             console.log(response.data)
             $('tr.row').remove()

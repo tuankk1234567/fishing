@@ -7,7 +7,7 @@ var {isEmail,checkLogin, checkAdmin,checkMaster,checkAuthentication} = require('
 var {getPostData,getticketvip,getticket,deleteticketvip,uploadpost,addcomment,getcomment,like,getlist,getdatachat,addchat,addticket,addcalendar,getdatacalendar,paymentconfirmation,addtoblacklist,adddayoff,updatemanageticket,deletedayoff,notlike} = require('../controller/Master.controller');
 
 
-MasterRouter.get('/getPostData',getPostData)
+MasterRouter.post('/getPostData',getPostData)
 MasterRouter.post('/addcomment',checkAuthentication,addcomment)
 
 MasterRouter.post('/getticketvip',getticketvip)
