@@ -15,7 +15,7 @@ const { response } = require('express');
 const CLIENT_ID = '1062793672536-fgj917nter97kmoouqe88jru6gs13kt1.apps.googleusercontent.com';
 const CLIENT_SECRET ='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';
 const REDIRECT_URL = 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = '1//04I2Xw44VyQT3CgYIARAAGAQSNwF-L9Ir7yo7RkLt5Fh2HyBc9drC06Dlynpg7L7klTQjeSgCBJHj95Y9wxm6a7MkB_Jci6V8OlY';
+const REFRESH_TOKEN = '1//04Nj_QWJLhHcECgYIARAAGAQSNwF-L9IrxsgdBl7Gshi7aTO74U8iG7QbeDiJUPZ3aIAUKPf_7nJYUvsIk6YtrODi_DHHqaxXffo';
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
   CLIENT_SECRET,
@@ -170,22 +170,44 @@ var transporter =  nodemailer.createTransport({
 let getPostData = (req,res)=>{
     var skip = Number(req.body.skip);
     var limit = Number(req.body.limit);
+    var numberPage;
     PostModel.find().then(data1=>{
+        if( data1.length <= limit){
+            numberPage = 1;
+            
+            
+        }else if(data1.length/limit > Math.floor(data1.length/limit)){
+            numberPage = Math.floor(data1.length/limit) + 1;
+            
+        }
+        else{
+            numberPage = Math.floor(data1.length/limit)
+            
+            
+        }
         if(data1.length - skip > limit){
             PostModel.find().populate('idUser').populate('comment.idUserC').skip(skip).limit(limit).sort({_id: -1})
             .then(data=>{
                 if(skip === 0){
-                    res.json({data:data,btn:'0'})
+                    res.json({data:data,btn:'0',numberPage:numberPage})
                 }else{
-                    res.json({data:data,btn:'1'})
+                    res.json({data:data,btn:'1',numberPage:numberPage})
                 }
                 
             })
-        }else{
+        }
+        if(data1.length - skip === limit||data1.length <= limit){
             limit = data1.length - skip;
             PostModel.find().populate('idUser').populate('comment.idUserC').skip(skip).limit(limit).sort({_id: -1})
             .then(data=>{
-                res.json({data:data,btn:'2'})
+                res.json({data:data,btn:'3',numberPage:numberPage})
+            })
+        }
+        if(data1.length - skip < limit){
+            limit = data1.length - skip;
+            PostModel.find().populate('idUser').populate('comment.idUserC').skip(skip).limit(limit).sort({_id: -1})
+            .then(data=>{
+                res.json({data:data,btn:'2',numberPage:numberPage})
             })
         }
 

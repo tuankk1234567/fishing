@@ -76,14 +76,15 @@
   }
 .swap{
   width: 100%;
-  height: 710px;
+  height: 92vh;
+  background-color: rgb(233, 227, 227);
 }
   .left{
     width: 25%;
-    height: 100%;
+    height: 95%;
     float: left;
     box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(97, 100, 104, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-    background-color: #fbfbfc;
+    background-color: white;
     margin: 10px auto auto 3%;
   }
   .left img{
@@ -123,7 +124,7 @@
     overflow:auto;
     margin: 5px auto auto auto;
     border-radius: 15px;
-    background-color: #edeff1;
+    background-color: white;
     scroll-margin-inline-end: 0;
   }
   .msger-chat::-webkit-scrollbar {
@@ -207,7 +208,7 @@
   }
   .msger-input {
     flex: 1;
-    background: #ddd;
+    background: white;
   }
   .msger-send-btn {
     margin-left: 10px;

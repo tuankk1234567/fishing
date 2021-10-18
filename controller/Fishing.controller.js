@@ -30,32 +30,225 @@ let getpage = (req,res)=>{
 }
 let getdata = (req,res)=>{
     var text = req.body.text;
-
+    var skip = Number(req.body.skip);
+    var limit = Number(req.body.limit);
     if(text === undefined || text === ""){
-        AccountModel.find({role:"master"},(err,data)=>{
+        AccountModel.find({role:'master'})
+        .then(data1=>{
+            if( data1.length <= limit){
+                numberPage = 1;
+                
+                
+            }else if(data1.length/limit > Math.floor(data1.length/limit)){
+                numberPage = Math.floor(data1.length/limit) + 1;
+                
+            }
+            else{
+                numberPage = Math.floor(data1.length/limit)
+                
+                
+            }
             let token = req.cookies.token
             if(token === undefined){
-                res.json({data:data,account:'0'})
-
+                if(data1.length <= limit){
+                    AccountModel.find({role:'master'}).skip(skip).limit(limit)
+                    .then(data=>{
+                        res.json({data:data,btn:'3',account:'0',numberPage:numberPage})
+                        return;
+                    })
+                }else{
+                    if(skip === 0){
+                        AccountModel.find({role:'master'}).skip(skip).limit(limit)
+                        .then(data=>{
+                            res.json({data:data,btn:'0',account:'0',numberPage:numberPage})
+                            return;
+                        })
+                    }
+                    else if(data1.length - skip <= limit){
+                        console.log('<')
+                        AccountModel.find({role:'master'}).skip(skip).limit(limit)
+                        .then(data=>{
+                            res.json({data:data,btn:'2',account:'0',numberPage:numberPage})
+                            return;
+                        })
+                    }else{
+                        console.log('<>')
+                        AccountModel.find({role:'master'}).skip(skip).limit(limit)
+                        .then(data=>{
+                            res.json({data:data,btn:'1',account:'0',numberPage:numberPage})
+                            return;
+                        })
+                    }
+                    
+                }
             }else{
                 var id = jwt.verify(token,'tuan')
+                if( data1.length <= limit){
+                    numberPage = 1;
+                    
+                    
+                }else if(data1.length/limit > Math.floor(data1.length/limit)){
+                    numberPage = Math.floor(data1.length/limit) + 1;
+                    
+                }
+                else{
+                    numberPage = Math.floor(data1.length/limit)
+                    
+                    
+                }
             AccountModel.findOne({_id:id},(err,account)=>{
-                res.json({data:data,account:account})
+                if(data1.length <= limit){
+                    AccountModel.find({role:'master'}).skip(skip).limit(limit)
+                    .then(data=>{
+                        res.json({data:data,btn:'3',account:account,numberPage:numberPage})
+                        return;
+                    })
+                }else{
+                    if(skip === 0){
+                        AccountModel.find({role:'master'}).skip(skip).limit(limit)
+                        .then(data=>{
+                            res.json({data:data,btn:'0',account:account,numberPage:numberPage})
+                            return;
+                        })
+                    }
+                    else if(data1.length - skip <= limit){
+                        console.log('<')
+                        AccountModel.find({role:'master'}).skip(skip).limit(limit)
+                        .then(data=>{
+                            res.json({data:data,btn:'2',account:account,numberPage:numberPage})
+                            return;
+                        })
+                    }else{
+                        console.log('<>')
+                        AccountModel.find({role:'master'}).skip(skip).limit(limit)
+                        .then(data=>{
+                            res.json({data:data,btn:'1',account:account,numberPage:numberPage})
+                            return;
+                        })
+                    }
+                    
+                }
+
+
             })
+                
+
             }
             
             
-
+            
         })
+        
     }else{
-        AccountModel.find({role:"master",$or:[{address: {$regex: text,$options : "i"}},{name: {$regex: text,$options : "i"}}]},(err,data)=>{
+        AccountModel.find({role:'master',$or:[{address: {$regex: text,$options : "i"}},{name: {$regex: text,$options : "i"}}]})
+        .then(data1=>{
+            if( data1.length <= limit){
+                numberPage = 1;
+                
+                
+            }else if(data1.length/limit > Math.floor(data1.length/limit)){
+                numberPage = Math.floor(data1.length/limit) + 1;
+                
+            }
+            else{
+                numberPage = Math.floor(data1.length/limit)
+                
+                
+            }
             let token = req.cookies.token
-            var id = jwt.verify(token,'tuan')
+            if(token === undefined){
+                if(data1.length <= limit){
+                    console.log('3')
+                    AccountModel.find({role:'master',$or:[{address: {$regex: text,$options : "i"}},{name: {$regex: text,$options : "i"}}]}).skip(skip).limit(limit)
+                    .then(data=>{
+                        res.json({data:data,btn:'3',account:'0',numberPage:numberPage})
+                        return;
+                    })
+                }else{
+                    if(skip === 0){
+                        AccountModel.find({role:'master',$or:[{address: {$regex: text,$options : "i"}},{name: {$regex: text,$options : "i"}}]}).skip(skip).limit(limit)
+                        .then(data=>{
+                            res.json({data:data,btn:'0',account:'0',numberPage:numberPage})
+                            return;
+                        })
+                    }
+                    else if(data1.length - skip <= limit){
+                        console.log('<')
+                        AccountModel.find({role:'master',$or:[{address: {$regex: text,$options : "i"}},{name: {$regex: text,$options : "i"}}]}).skip(skip).limit(limit)
+                        .then(data=>{
+                            res.json({data:data,btn:'2',account:'0',numberPage:numberPage})
+                            return;
+                        })
+                    }else{
+                        console.log('<>')
+                        AccountModel.find({role:'master',$or:[{address: {$regex: text,$options : "i"}},{name: {$regex: text,$options : "i"}}]}).skip(skip).limit(limit)
+                        .then(data=>{
+                            res.json({data:data,btn:'1',account:'0',numberPage:numberPage})
+                            return;
+                        })
+                    }
+                    
+                }
+            }else{
+                var id = jwt.verify(token,'tuan')
+                if( data1.length <= limit){
+                    numberPage = 1;
+                    
+                    
+                }else if(data1.length/limit > Math.floor(data1.length/limit)){
+                    numberPage = Math.floor(data1.length/limit) + 1;
+                    
+                }
+                else{
+                    numberPage = Math.floor(data1.length/limit)
+                    
+                    
+                }
             AccountModel.findOne({_id:id},(err,account)=>{
-                res.json({data:data,account:account})
-            })
+                if(data1.length <= limit){
+                    console.log('3')
+                    AccountModel.find({role:'master',$or:[{address: {$regex: text,$options : "i"}},{name: {$regex: text,$options : "i"}}]}).skip(skip).limit(limit)
+                    .then(data=>{
+                        res.json({data:data,btn:'3',account:account,numberPage:numberPage})
+                        return;
+                    })
+                }else{
+                    if(skip === 0){
+                        AccountModel.find({role:'master',$or:[{address: {$regex: text,$options : "i"}},{name: {$regex: text,$options : "i"}}]}).skip(skip).limit(limit)
+                        .then(data=>{
+                            res.json({data:data,btn:'0',account:account,numberPage:numberPage})
+                            return;
+                        })
+                    }
+                    else if(data1.length - skip <= limit){
+                        console.log('<')
+                        AccountModel.find({role:'master',$or:[{address: {$regex: text,$options : "i"}},{name: {$regex: text,$options : "i"}}]}).skip(skip).limit(limit)
+                        .then(data=>{
+                            res.json({data:data,btn:'2',account:account,numberPage:numberPage})
+                            return;
+                        })
+                    }else{
+                        console.log('<>')
+                        AccountModel.find({role:'master',$or:[{address: {$regex: text,$options : "i"}},{name: {$regex: text,$options : "i"}}]}).skip(skip).limit(limit)
+                        .then(data=>{
+                            res.json({data:data,btn:'1',account:account,numberPage:numberPage})
+                            return;
+                        })
+                    }
+                    
+                }
 
+
+            })
+                
+
+            }
+            
+            
+            
         })
+
+        
 
 
     }

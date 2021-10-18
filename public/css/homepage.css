@@ -70,13 +70,21 @@
     margin-right: 8px;
     font-size: 16px;
   }
+  .information{
+    width: 100%;
+    height: 600px;
+    background-color: rgb(233, 227, 227);
+  }
 
   .left{
+    margin-top: 20px;
+    margin-left: 5%;
     float: left;
     width: 30%;
-    height: 650px;
+    height: 550px;
     text-align: center;
-    border-right: #242222 solid 2px;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
   .left img{
     width: 70%;
@@ -99,19 +107,26 @@
     color: blue;
   }
   .right{
+    margin-top: 20px;
     float: right;
-    width: 60%;
-    height: 650px;
+    margin-right: 5%;
+    width: 55%;
+    height: 550px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: white;
   }
   .right .t{
     margin-top: 25px;
     font-size: 30px;
+    margin-left: 50px;
   }
   .right r{
     margin-top: 40px;
   }
   .right p {
     border-bottom:#242222 solid 1px;
+    margin-left: 50px;
+    margin-right: 50px;
   }
   .right label{
     margin-top: 20px;
@@ -123,6 +138,14 @@
     border: none;
     font-size: 25px;
     outline: none;
+    margin-left: 5px;
+  }
+  .right .imageUrl{
+    margin-top: 20px;
+    border: none;
+    font-size: 25px;
+    outline: none;
+    margin-left: 50px;
   }
   
 
@@ -201,6 +224,53 @@
     text-decoration: none;
     cursor: pointer;
   }
+  .footer{
+    width: 100%;
+    height: 220px;
+    background-color: #2f3640;
+  }
+  .footer .footer_left{
+    float: left;
+    width: 35%;
+    height: 70%;
+    margin: 20px auto auto 7%;
+  }
+  .footer .footer_left p{
+    font-size: 20px;
+  }
+  .footer .footer_left .fas,.footer .footer_left .far{
+    padding: 10px;
+    border-radius: 50%;
+    background-color: white;
+    text-align: center;
+    margin: 15px 20px auto auto;
+  }
+  .footer .footer_left i {
+    position: relative;
 
+  }
+  .footer .footer_left span {
+    color: white;
+  }
+  .footer .footer_right{
+    float: right;
+    width: 40%;
+    height: 70%;
+    margin: 20px 7% auto auto;
+  }
+  .footer .footer_right h1{
+    color: white;
+    margin-bottom: 20px;
+  }
+  .footer .footer_right p{
+    color: white;
+    margin-bottom: 20px;
+    font-size: 17px;
+  }
+  .footer .footer_right a{
+    color: white;
+    margin-right: 30px;
+    font-size: 30px;
+  }
   
   

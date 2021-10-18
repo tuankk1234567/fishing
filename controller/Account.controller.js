@@ -11,7 +11,7 @@ const { response } = require('express');
 const CLIENT_ID = '1062793672536-fgj917nter97kmoouqe88jru6gs13kt1.apps.googleusercontent.com';
 const CLIENT_SECRET ='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';
 const REDIRECT_URL = 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = '1//04I2Xw44VyQT3CgYIARAAGAQSNwF-L9Ir7yo7RkLt5Fh2HyBc9drC06Dlynpg7L7klTQjeSgCBJHj95Y9wxm6a7MkB_Jci6V8OlY';
+const REFRESH_TOKEN = '1//04Nj_QWJLhHcECgYIARAAGAQSNwF-L9IrxsgdBl7Gshi7aTO74U8iG7QbeDiJUPZ3aIAUKPf_7nJYUvsIk6YtrODi_DHHqaxXffo';
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
   CLIENT_SECRET,
@@ -232,6 +232,7 @@ let doupdate = (req,res)=>{
                       body: fs.createReadStream(req.files[0].path),
                     },
                   },(err,data)=>{
+                      console.log(data)
                       drive.permissions.create({
                           fileId:data.data.id,
                           requestBody:{

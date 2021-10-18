@@ -285,10 +285,10 @@ function getdataTicketVip(date4,timeFishing){
                      <td>'+data.price+'</td>\
                      <td class="type">'+data.type+'</td>\
                      <td>'+data.nameFishing.name+'</td>\
-                     <td><p><button class="del" value="'+data._id+'"><i class="far fa-trash-alt"></i> Delete</button></p>\
+                     <td><button class="del" value="'+data._id+'"><i class="far fa-trash-alt"></i></button>\
                      <input type="hidden" value="'+data.nameFishing._id+'" class="idUser">\
-                     <p><button class="payment-confirmation" value="'+data._id+'"><i class="fab fa-cc-amazon-pay"></i> Payment confirmation</button></p>\
-                     <p><button class="add-to-black-list" value="'+index+'"><i class="fas fa-user-lock"></i></i> Add to block list</button></p>\
+                     <button class="payment-confirmation" value="'+data._id+'"><i class="fab fa-amazon-pay"></i> </button>\
+                     <button class="add-to-black-list" value="'+index+'"><i class="fas fa-user-lock"></i></i></button>\
                      </td>\
                    </tr>\
                      ')
@@ -309,7 +309,7 @@ $(document).on('click','.payment-confirmation',function(){
     console.log(date4,timeFishing)
     
 console.log(_id)
-if(confirm("Đã thanh toán?") == true){
+if(confirm("Paid?") == true){
     $.ajax({
         url:'/master/paymentconfirmation',
         method:'post',
@@ -337,7 +337,7 @@ $(document).on('click','.add-to-black-list',function(){
     var date4 = $('#date4').val();
     var timeFishing = $('#timeFishing').val();
 
-if(confirm("Bạn có muốn thêm vào black list?") == true){
+if(confirm("Do you want to add to the black list?") == true){
     if(type === 'payment confirmation'){
         alert('they paid you can not add to blacklist')
 
@@ -420,7 +420,7 @@ function getdatacalendar(){
                             if(response.data.dayOff[i] >= datenow){
                                 $('.table2').append('<tr>\
                                 <th>'+response.data.dayOff[i]+'</th>\
-                                <th><button class="delete" value="'+response.data.dayOff[i]+'"><i class="far fa-trash-alt"></i> Delete</button></th>\
+                                <th><button class="delete" value="'+response.data.dayOff[i]+'"><i class="far fa-trash-alt"></i></button></th>\
                                 </tr>')
                             }
                             
@@ -439,7 +439,7 @@ function getdatacalendar(){
 
 $(document).on('click','.delete',function(){
     var dayoff = $(this).val();
-if(confirm("Bạn có muốn xóa không?") == true){
+if(confirm("Do you want to delete?") == true){
     $.ajax({
         url:'/master/deletedayoff',
         method:'delete',

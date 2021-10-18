@@ -3,11 +3,12 @@ $(document).ready(function() {
     var skip = 0;
     var limit = 7;
     var lesson = false; 
-getdata(skip,limit);
+    var pageNumber = 1;
+    getdata(skip,limit,pageNumber);
 
 
 
-function getdata(skip,limit){
+function getdata(skip,limit,pageNumber){
     var idUser = $('#idUser').val();
     var role = $('#role').val();
     $.ajax({
@@ -146,18 +147,36 @@ function getdata(skip,limit){
            
                     });
                     if(response.btn === '0'){
-                        PostForm.append('<div class="page"><button class="Next" value="">Next</button></div> ')
+                        PostForm.append('<div class="page"></div> ');
+                      for(var i = 1; i <= response.numberPage; i++){
+                          $('.page').append('<button class="pageNumber" id="page'+i+'" value="'+i+'">'+i+'</button>')
+                      }
+                      $('.page').append('<button class="Next" value=""><i class="fas fa-chevron-right"></i></button>')
 
                     }
                     if(response.btn === '2'){
-                        PostForm.append('<div class="page"><button class="Previous" value="">Previous</button></div>')
+                        PostForm.append('<div class="page"><button class="Previous" value=""><i class="fas fa-chevron-left"></i></button></div>')
+                        for(var i = 1; i <= response.numberPage; i++){
+                            $('.page').append('<button class="pageNumber" id="page'+i+'" value="'+i+'">'+i+'</button>')
+                        }
 
                     }
                     if(response.btn === '1'){
-                        PostForm.append('<div class="page"><button class="Previous" value="">Previous</button> \
-                        <button class="Next" value="">Next</button></div> ')
+                        PostForm.append('<div class="page"><button class="Previous" value=""><i class="fas fa-chevron-left"></i></button> \
+                       </div> ')
+                        for(var i = 1; i <= response.numberPage; i++){
+                            $('.page').append('<button class="pageNumber"  id="page'+i+'" value="'+i+'">'+i+'</button>')
+                        }
+                        $('.page').append('<button class="Next" value=""><i class="fas fa-chevron-right"></i></button>')
 
                     }
+                    
+                    $('#page'+pageNumber+'').css('background-color','#2f3640');
+                    $('#page'+pageNumber+'').css('color','white')
+                    $('html, body').animate({
+                        scrollTop: $('.PostForm').offset().top
+                    }, 1000);
+                    lesson = false;
 
                  PostForm.append('<div class="commentForm1"></div>')
                  
@@ -170,22 +189,38 @@ function getdata(skip,limit){
 }
 $(document).on('click','.Previous',function(){
     if(lesson) return;
+    $('.page button').css('background-color','white')
+    $('.page button').css('color','#2f3640')
+    pageNumber = skip/limit
     skip = skip - limit;
     lesson = true;
 
-    getdata(skip,limit);
-    lesson = false;
+    getdata(skip,limit,pageNumber);
+    
+
+})
+$(document).on('click','.pageNumber',function(){
+    if(lesson) return;
+    $('.page button').css('background-color','white')
+    $('.page button').css('color','#2f3640')
+    var pageNumber = $(this).val();
+    skip = (pageNumber - 1) * limit;
+    lesson = true;
+    
+    getdata(skip,limit,pageNumber);
+    
     
 
 })
 $(document).on('click','.Next',function(){
     if(lesson) return;
-    
+    $('.page button').css('background-color','white')
+    $('.page button').css('color','#2f3640')
+    pageNumber = skip/limit + 2
 
     skip = skip + limit;
     lesson = true;
-    getdata(skip,limit);
-    lesson = false;
+    getdata(skip,limit,pageNumber);
 
 })
 

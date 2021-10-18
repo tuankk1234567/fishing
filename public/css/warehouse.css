@@ -69,9 +69,13 @@
     margin-right: 8px;
     font-size: 16px;
   }
+  .swap{
+    width: 100%;
+    min-height: 600px;
+    background-color: rgb(233, 227, 227);
+  }
   h1{
     text-align: center;
-    margin-top: 30px;
 
   }
 
@@ -94,4 +98,54 @@
 
   .da{
     background-color: #dddddd;
+  }
+  .footer{
+    width: 100%;
+    height: 220px;
+    background-color: #2f3640;
+  }
+  .footer .footer_left{
+    float: left;
+    width: 35%;
+    height: 70%;
+    margin: 20px auto auto 7%;
+  }
+  .footer .footer_left p{
+    font-size: 20px;
+  }
+  .footer .footer_left .fas,.footer .footer_left .far{
+    padding: 10px;
+    border-radius: 50%;
+    background-color: white;
+    text-align: center;
+    margin: 15px 20px auto auto;
+  }
+  .footer .footer_left i {
+    position: relative;
+
+  }
+  .footer .footer_left span {
+    color: white;
+  }
+  .footer .footer_right{
+    float: right;
+    width: 40%;
+    height: 70%;
+    margin: 20px 7% auto auto;
+  }
+  .footer .footer_right h1{
+    color: white;
+    margin-bottom: 20px;
+    float: left;
+  }
+  .footer .footer_right p{
+    color: white;
+    margin-bottom: 20px;
+    font-size: 17px;
+    float: left;
+  }
+  .footer .footer_right a{
+    color: white;
+    margin-right: 30px;
+    font-size: 30px;
   }

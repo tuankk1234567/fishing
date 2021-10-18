@@ -5,20 +5,20 @@ $(document).ready(function() {
     var skip = 0;
     var limit = 7;
     var lesson = false; 
-getdata(skip,limit);
+    var pageNumber = 1;
+getdata(skip,limit,pageNumber);
 
 
-function getdata(){
+
+function getdata(skip,limit,pageNumber){
     var idUser = $('#idUser').val();
     var role = $('#role').val();
-    console.log(role)
     $.ajax({
         url:'/master/getPostData',
         method:'post',
         dataType:'json',
         data:{skip:skip,limit:limit},
         success:function(response){
-            console.log(response.data)
             var PostForm = $('.PostForm');
 
                 PostForm.html('');
@@ -32,7 +32,7 @@ function getdata(){
                                <a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="'+data.idUser.imageUrl+'" alt="">\
                                <span>'+data.idUser.name+'</span></a>\
                                <span style="font-size:12px;" class="date">'+data.date+':'+data.time+'</span>\
-                               <button style="width: 80px;height: 40xp;font-size: 15px;padding: 4px 4px 4px 4px;margin-top:5px; background-color: #2f3640; border-radius: 10px; color: #fff; float: right" class = "delete"  value="'+data._id+'">Delete</button>\
+                               <button style="width: 40px;height: 40xp;font-size: 13px;padding: 4px 4px 4px 4px;margin-top:5px; background-color: white; border-radius: 10px; color: red; float: right" class = "delete"  value="'+data._id+'"><i class="fas fa-times"></i></button>\
                                <p class = "write">'+data.writePost+'</p>')
                                if(data.like.includes(idUser)){
                                    $('#'+data._id+'').append('<button style="color: blue;" class = "like1"  value="'+data._id+'"><i class="fas fa-thumbs-up"></i><label>('+data.like.length+')Like</label></button><button class="comment" value="'+data._id+'"><i class="fas fa-comments"></i>('+data.comment.length+')Commnet</button>')
@@ -47,7 +47,7 @@ function getdata(){
                                 $('#'+data._id+'').append('<a href="/account/profile/'+data.idUser._id+'"><img class="imgUser" src="'+data.idUser.imageUrl+'" alt="">\
                                 <span>'+data.idUser.name+'</span></a>\
                                 <span  style="font-size:12px;" class="date">'+data.date+':'+data.time+'</span>\
-                                <button style="width: 80px;height: 40xp;font-size: 15px;padding: 4px 4px 4px 4px;margin-top:5px; background-color: #2f3640; border-radius: 10px; color: #fff; float: right" class = "delete"  value="'+data._id+'">Delete</button>\
+                                <button style="width: 40px;height: 40xp;font-size: 13px;padding: 4px 4px 4px 4px;margin-top:5px; background-color: white; border-radius: 10px; color: red; float: right" class = "delete"  value="'+data._id+'"><i class="fas fa-times"></i></button>\
                                  <p class = "write">'+data.writePost+'</p>')
                                  $('#'+data._id+'').append('<div id="carouselExampleControls '+data._id+'" class="carousel slide" data-ride="carousel">\
                                  <div class="carousel-inner">\
@@ -149,19 +149,36 @@ function getdata(){
            
                     });
                     if(response.btn === '0'){
-                        PostForm.append('<div class="page"><button class="Next" value="">Next</button></div> ')
+                        PostForm.append('<div class="page"></div> ');
+                      for(var i = 1; i <= response.numberPage; i++){
+                          $('.page').append('<button class="pageNumber" id="page'+i+'" value="'+i+'">'+i+'</button>')
+                      }
+                      $('.page').append('<button class="Next" value=""><i class="fas fa-chevron-right"></i></button>')
 
                     }
                     if(response.btn === '2'){
-                        PostForm.append('<div class="page"><button class="Previous" value="">Previous</button></div>')
+                        PostForm.append('<div class="page"><button class="Previous" value=""><i class="fas fa-chevron-left"></i></button></div>')
+                        for(var i = 1; i <= response.numberPage; i++){
+                            $('.page').append('<button class="pageNumber" id="page'+i+'" value="'+i+'">'+i+'</button>')
+                        }
 
                     }
                     if(response.btn === '1'){
-                        PostForm.append('<div class="page"><button class="Previous" value="">Previous</button> \
-                        <button class="Next" value="">Next</button></div> ')
+                        PostForm.append('<div class="page"><button class="Previous" value=""><i class="fas fa-chevron-left"></i></button> \
+                       </div> ')
+                        for(var i = 1; i <= response.numberPage; i++){
+                            $('.page').append('<button class="pageNumber"  id="page'+i+'" value="'+i+'">'+i+'</button>')
+                        }
+                        $('.page').append('<button class="Next" value=""><i class="fas fa-chevron-right"></i></button>')
 
                     }
-                   
+                    
+                    $('#page'+pageNumber+'').css('background-color','#2f3640');
+                    $('#page'+pageNumber+'').css('color','white')
+                    $('html, body').animate({
+                        scrollTop: $('.PostForm').offset().top
+                    }, 1000);
+                    lesson = false;
 
                  PostForm.append('<div class="commentForm1"></div>')
              
@@ -174,37 +191,60 @@ function getdata(){
 
 $(document).on('click','.Previous',function(){
     if(lesson) return;
+    $('.page button').css('background-color','white')
+    $('.page button').css('color','#2f3640')
+    pageNumber = skip/limit
     skip = skip - limit;
     lesson = true;
 
-    getdata(skip,limit);
-    lesson = false;
+    getdata(skip,limit,pageNumber);
+    
+
+})
+$(document).on('click','.pageNumber',function(){
+    if(lesson) return;
+    $('.page button').css('background-color','white')
+    $('.page button').css('color','#2f3640')
+    var pageNumber = $(this).val();
+    skip = (pageNumber - 1) * limit;
+    lesson = true;
+    
+    getdata(skip,limit,pageNumber);
+    
     
 
 })
 $(document).on('click','.Next',function(){
     if(lesson) return;
-    
+    $('.page button').css('background-color','white')
+    $('.page button').css('color','#2f3640')
+    pageNumber = skip/limit + 2
 
     skip = skip + limit;
     lesson = true;
-    getdata(skip,limit);
-    lesson = false;
+    getdata(skip,limit,pageNumber);
 
 })
-
+const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
 $(document).on('click', '.btnAddPost', function() {
     var today= new Date();
     var datenow = today.getFullYear()+'-'+(today.getMonth()+1).toString().padStart(2, "0")+'-'+today.getDate();
     var timenow = today.getHours().toString().padStart(2, "0")+':'+today.getMinutes().toString().padStart(2, "0");
     var writePost = $(".writePost").val();
     var imageUrl = $(".imageUrl").prop('files');
-    console.log(writePost,imageUrl)
     var formData = new FormData();
     formData.append("datenow",datenow);
     formData.append("timenow",timenow);
     formData.append("writePost",writePost);
+    if(imageUrl.length > 3){
+        alert('The number of photos should not exceed 3 photos')
+        return;
+    }
     for(var i = 0;i < imageUrl.length; i++){
+       if(!validImageTypes.includes(imageUrl[i].type)){
+           alert('File is not image')
+           return;
+       }
         formData.append("imageUrl",imageUrl[i])
     }
     if(writePost===''){
@@ -249,7 +289,6 @@ $(document).on('click','.like',function(event){
     if(lessonFetching) return;
     var idPost = $(this).val();
     $('#'+idPost+' .like').css('border','none');
-    console.log(idPost)
     lessonFetching = true;
     $.ajax({
         url:'/master/like',
@@ -276,7 +315,6 @@ $(document).on('click','.like',function(event){
 
 $(document).on('click','.like1',function(){
     var idPost = $(this).val();
-    console.log(idPost)
     $.ajax({
         url:'/master/notlike',
         method:'post',
@@ -314,7 +352,6 @@ $(document).on('click', '.addcomment', function() {
     var imageUrl = $('#imageUrl').val();
     var name = $('#name').val();
     var idUser = $('#idUser').val();
-    console.log(name)
     if(name === ''){
         alert('You must login')
     }else{
@@ -327,7 +364,6 @@ $(document).on('click', '.addcomment', function() {
             date:datenow,
             time:timenow
         }
-        console.log(t)
         $('.commentPost').val("");
         socket.emit("user-comment",t)
 
@@ -345,7 +381,6 @@ socket.on("server-comment",function(data){
 
 $(document).on('click', '.comment', function() {
     var idPost = $(this).val();
-    console.log(idPost)
 
 
     socket.emit("tao-room-comment",idPost)
@@ -356,7 +391,6 @@ $(document).on('click', '.comment', function() {
         dataType:'json',
         data:{idPost:idPost},
         success:function(response){
-            console.log(response.data)
             var commentForm = $('.commentForm1');
 
                 commentForm.html('');

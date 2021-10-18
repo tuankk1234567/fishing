@@ -1,5 +1,6 @@
 $(document).ready(function(){
     getdata();
+    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
     var checkUpdate = true;
     function isNumberKey(evt) {
         var charCode = (evt.which) ? evt.which : event.keyCode;
@@ -112,6 +113,10 @@ $(document).ready(function(){
         formData.append("bank",bank);
         formData.append("stk",stk);
         for(var i = 0;i < imageUrl.length; i++){
+            if(!validImageTypes.includes(imageUrl[i].type)){
+                alert('File is not image')
+                return;
+            }
             formData.append("imageUrl",imageUrl[i])
         }
     

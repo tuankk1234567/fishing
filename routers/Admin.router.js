@@ -1,7 +1,7 @@
 var express = require('express');
 var AdminRouter = express.Router();
 var {isEmail,checkLogin, checkAdmin,checkMaster,checkAuthentication} = require('../middleware/middleware');
-var {getAccount,deleteAccount,addMaster,deletePost} = require('../controller/Admin.controller');
+var {getAccount,deleteAccount,addMaster,deletePost,getnumberaccount} = require('../controller/Admin.controller');
 var jwt = require('jsonwebtoken');
 const AccountModel = require('../models/Account.model')
 AdminRouter.get('/manage',(req,res)=>{
@@ -20,5 +20,6 @@ AdminRouter.get('/event',(req,res)=>{
       })
       
   })
+AdminRouter.post('/getnumberaccount',getnumberaccount)
   AdminRouter.delete('/deletePost',checkAuthentication,deletePost)
 module.exports = AdminRouter

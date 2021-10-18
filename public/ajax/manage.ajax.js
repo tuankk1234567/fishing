@@ -4,6 +4,10 @@ $(document).ready(function() {
     var checkPhone = true;
     var checkStk = true;
     var text;   
+     var skip = 0;
+    var limit = 4;
+    var lesson = false; 
+    var pageNumber = 1;
 function isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
     if (charCode != 46 && charCode > 31
@@ -66,14 +70,14 @@ $(document).on('keyup','#stk',function(){
 
 
 var role = "fishing"
-getdata(text,role);
+getdata(text,role,skip,limit,pageNumber);
+getNumberAccount(role)
 
 $(document).on('click','#addbtn',function(){
     if(checkEmail === false,checkPhone === false,checkStk === false){
         alert('You must enter follow form')
         return;
     }
-    
     var email = $("#email").val();
     var password = $("#password").val();
     var role = $("#role").val();
@@ -123,12 +127,18 @@ $(document).on('click','#addbtn',function(){
            name:name,
            stk:stk},
       success:function(response){
-          if(response.message){
-              alert(response.message === 'You must login')
+          if(response.message === 'Email already exists'){
+            alert(response.message )
+            return;
+          }
+          if(response.message === 'You must login'){
+              alert(response.message )
           }else{
             $('.formadd').empty();
-            alert('User added successfully');
-            getdata(role);
+            alert('User added successful');
+            role = 'master';
+            $('#role').val('master');
+            getdata(text,role,skip,limit,pageNumber);
           }
 
           
@@ -143,31 +153,66 @@ $(document).on('click','#addbtn',function(){
 });
 
 $(document).on('change','#role',function(){
+    skip = 0;
+    pageNumber = 1;
+    var text = $('#search').val();
     var role = $(this).val();
-    console.log(text,role)
-    getdata(text,role);
+    getdata(text,role,skip,limit,pageNumber);
+    getNumberAccount(role)
     
     
  } );
  $(document).on('keyup','#search',function(){
+     skip = 0;
+     pageNumber = 1;
     var text = $(this).val();
     var role = $('#role').val();
-    console.log(text,role);
-    getdata(text,role);
+    getdata(text,role,skip,limit,pageNumber);
     
     
  } );
 
-function getdata(text,role){
+ function getNumberAccount(role){
+    
+    $.ajax({
+        url:'/admin/getnumberaccount',
+        method:'post',
+        dataType:'json',
+        data:{role:role},
+        success:function(response){
+            $('.number_account').remove();
+            if(response.message === 'Successful'){
+                if(role === 'fishing'){
+                    $('.searchForm').append(' <button class="number_account" value=""><i class="fas fa-users"></i>  '+response.count+' Fishing</button>')
+                }
+                if(role === 'master'){
+                    $('.searchForm').append(' <button class="number_account" value=""><i class="fas fa-users"></i>  '+response.count+' Master</button>')
+                }
+                
+            }
+                 
+                 
+             
+        },
+        error:function(response){
+            alert('server error');
+        }
+    });
+}
+
+function getdata(text,role,skip,limit,pageNumber){
     
     $.ajax({
         url:'/admin/getaccount',
         method:'post',
         dataType:'json',
-        data:{text:text,role:role},
+        data:{text:text,
+              role:role,
+              skip:skip,
+              limit:limit},
         success:function(response){
-            console.log(response.data)
             $('tr.row').remove()
+            $('.page').empty();
             if(response.message){
                 alert(response.message === 'You must login')
             }else{
@@ -185,6 +230,32 @@ function getdata(text,role){
        <td>'+'<button class="del" value="'+data._id+'"><i class="far fa-trash-alt"></i> Delete</button>'+'</td>\
        </tr>'); 
                 });
+                if(response.btn === '0'){
+                  for(var i = 1; i <= response.numberPage; i++){
+                      $('.page').append('<button class="pageNumber" id="page'+i+'" value="'+i+'">'+i+'</button>')
+                  }
+                  $('.page').append('<button class="Next" value=""><i class="fas fa-chevron-right"></i></button>')
+
+                }
+                if(response.btn === '2'){
+                    $('.page').append('<button class="Previous" value=""><i class="fas fa-chevron-left"></i></button>')
+                    for(var i = 1; i <= response.numberPage; i++){
+                        $('.page').append('<button class="pageNumber" id="page'+i+'" value="'+i+'">'+i+'</button>')
+                    }
+
+                }
+                if(response.btn === '1'){
+                    $('.page').append('<button class="Previous" value=""><i class="fas fa-chevron-left"></i></button>')
+                    for(var i = 1; i <= response.numberPage; i++){
+                        $('.page').append('<button class="pageNumber"  id="page'+i+'" value="'+i+'">'+i+'</button>')
+                    }
+                    $('.page').append('<button class="Next" value=""><i class="fas fa-chevron-right"></i></button>')
+
+                }
+                
+                $('#page'+pageNumber+'').css('background-color','#2f3640');
+                $('#page'+pageNumber+'').css('color','white')
+                lesson = false;
             }
                  
                  
@@ -195,10 +266,52 @@ function getdata(text,role){
         }
     });
 }
+
+$(document).on('click','.Previous',function(){
+    if(lesson) return;
+    $('.page button').css('background-color','white')
+    $('.page button').css('color','#2f3640')
+    pageNumber = skip/limit
+    skip = skip - limit;
+    var text = $('#search').val();
+    var role = $('#role').val();
+    lesson = true;
+    getdata(text,role,skip,limit,pageNumber);
+    
+
+})
+$(document).on('click','.pageNumber',function(){
+    if(lesson) return;
+    $('.page button').css('background-color','white')
+    $('.page button').css('color','#2f3640')
+    var pageNumber = $(this).val();
+    var text = $('#search').val();
+    var role = $('#role').val();
+    skip = (pageNumber - 1) * limit;
+    lesson = true;
+    
+    getdata(text,role,skip,limit,pageNumber);
+    
+    
+
+})
+$(document).on('click','.Next',function(){
+    if(lesson) return;
+    $('.page button').css('background-color','white')
+    $('.page button').css('color','#2f3640')
+    pageNumber = skip/limit + 2
+    var text = $('#search').val();
+    var role = $('#role').val();
+    skip = skip + limit;
+    lesson = true;
+    getdata(text,role,skip,limit,pageNumber);
+
+})
+
+
 $(document).on('click','button.del',function(){
     var _id = $(this).parent().find('button.del').val();
     var role = $('#role').val();
-    // alert('delte',id)
     if(confirm("Do you want to delete this account?") == true){
         $.ajax({
             url:'/admin/deleteaccount',
@@ -209,8 +322,8 @@ $(document).on('click','button.del',function(){
                 if(response.message){
                     alert(response.message === 'You must login')
                 }else{
-                    alert('data deleted');
-                    getdata(role); 
+                    alert('Account deleted');
+                    getdata(text,role); 
                 }
                 
                        
@@ -224,7 +337,6 @@ $(document).on('click','button.del',function(){
 });
 
 $(document).on('click','.btnaddform',function(){
-    console.log('co')
     $('.formadd').append('<div id="myModal" class="modal">\
     <div class="modal-content">\
       <span class="close">&times;</span>\
