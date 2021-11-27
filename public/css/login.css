@@ -1,7 +1,7 @@
-body{
+body {
     margin: 0px;
     padding: 0px;
-    background-image: url("/upload/anh2.jpg") ;
+    background-image: url("/upload/anh2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     font-family: sans-serif;
@@ -9,9 +9,9 @@ body{
     height: 100vh;
     text-decoration: none;
     font-family: sans-serif;
-    
 }
-.signup-form{
+
+.signup-form {
     width: 300px;
     padding: 20px;
     text-align: center;
@@ -20,20 +20,18 @@ body{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     overflow: hidden;
     border-radius: 10px;
-
 }
 
-.signup-form img{
+.signup-form img {
     width: 50%;
     height: 50%;
     border-radius: 50%;
-
 }
 
-.signup-form input{
+.signup-form input {
     display: block;
     width: 100%;
     padding-left: 10px;
@@ -44,12 +42,13 @@ body{
     font-size: 14px;
     border-radius: 10px;
 }
-h1{
+
+h1 {
     color: #fff;
     font-size: 30px;
 }
 
-#btn{
+#btn {
     border: none;
     margin-top: 10px;
     width: 100px;
@@ -59,18 +58,32 @@ h1{
     color: rgb(24, 21, 21);
     border-radius: 10px;
     cursor: pointer;
-
-
 }
-#btn:hover{
+
+#btn:hover {
     transform: scale(0.95);
 }
-.signup-form a{
+
+.signup-form a {
     text-decoration: none;
-    padding-right:10px;
+    padding-right: 10px;
     padding-left: 10px;
     color: #fff;
 }
-.signup-form a:hover{
+
+.signup-form a:hover {
     color: rgb(47, 0, 255);
+}
+
+.txt_email,
+.txt_name,
+.txt_password,
+.txt_phone,
+.txt_address,
+.txt_bank,
+.txt_stk {
+    color: red;
+    float: left;
+    margin-top: -10px;
+    display: none;
 }

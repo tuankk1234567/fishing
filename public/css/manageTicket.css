@@ -1,23 +1,21 @@
-*{
+* {
     margin: 0;
     padding: 0;
     text-decoration: none;
     font-family: sans-serif;
-  }
-  
-  
-  .inner-width{
+}
+
+.inner-width {
     height: 65px;
     background-color: #2f3640;
-  }
-  
-  
-  .navigation-menu{
-      float: left;
+}
+
+.navigation-menu {
+    float: left;
     margin: 20px 10px 0 0;
-  }
-  
-  .navigation-menu a{
+}
+
+.navigation-menu a {
     text-align: center;
     margin-left: 10px;
     color: whitesmoke;
@@ -25,31 +23,34 @@
     padding: 12px 20px;
     border-radius: 4px;
     transition: .3s linear;
-  }
-  .manageTicket {
+}
+
+.manageTicket {
     background: #fff;
     color: #2f3640;
-  }
-  .manageTicket i {
-    color: #2f3640;
-  }
+}
 
-  
-  .navigation-menu a:hover{
+.manageTicket i {
+    color: #2f3640;
+}
+
+.navigation-menu a:hover {
     background: #fff;
     color: #2f3640;
     transform: scale(1.1);
-  }
-  
-  .navigation-menu i{
+}
+
+.navigation-menu i {
     margin-right: 8px;
     font-size: 16px;
-  }
-  .logout{
+}
+
+.logout {
     float: right;
     margin: 20px 10px 0 0;
-  }
-  .logout a{
+}
+
+.logout a {
     text-align: center;
     margin-left: 10px;
     color: whitesmoke;
@@ -57,38 +58,42 @@
     padding: 12px 20px;
     border-radius: 4px;
     transition: .3s linear;
-  }
-  
-  
-  .logout a:hover{
+}
+
+.logout a:hover {
     background: #fff;
     color: #2f3640;
     transform: scale(1.1);
-  }
-  
-  .logout i{
+}
+
+.logout i {
     margin-right: 8px;
     font-size: 16px;
-  }
-  .swap{
+}
+
+.swap {
     width: 100%;
     height: 600px;
     background-color: rgb(233, 227, 227);
-  }
-  .left{
+}
+
+.left {
     width: 30%;
     float: left;
     min-height: 600px;
     margin-left: 30px;
     margin-top: 30px;
-  }
-  .left .formButton{
+}
+
+.left .formButton {
     float: left;
     width: 30%;
-  }
-  
+}
 
-  .left .formButton .addFormticket,.left .formButton .addFormCalendar,.left .formButton .btnupdate,.left .formButton .addFormDayOff{
+.left .formButton .addFormticket,
+.left .formButton .addFormCalendar,
+.left .formButton .btnupdate,
+.left .formButton .addFormDayOff {
     width: 130px;
     height: 40px;
     padding: 7px;
@@ -98,59 +103,65 @@
     border-radius: 10px;
     cursor: pointer;
     margin-bottom: 5px;
-  }
-  .left .formButton .addFormticket:hover,.left .formButton .addFormCalendar:hover,.left .formButton .btnupdate:hover,.left .formButton .addFormDayOff:hover{
+}
+
+.left .formButton .addFormticket:hover,
+.left .formButton .addFormCalendar:hover,
+.left .formButton .btnupdate:hover,
+.left .formButton .addFormDayOff:hover {
     transform: scale(0.95);
-  }
+}
 
-
-
-  .left .dataticket{
+.left .dataticket {
     width: 70%;
     float: right;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     background-color: white;
     height: 130px;
-  }
-  h1{
+}
+
+h1 {
     text-align: center;
     margin-bottom: 10px;
-  }
-  .left .datacalendar{
+}
+
+.left .datacalendar {
     width: 70%;
     float: right;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     background-color: white;
     margin: 5px auto 5px auto;
     height: 150px;
+}
 
-  }
-  .left .dataticket input{
+.left .dataticket input {
     border: none;
     outline: none;
     width: 100px;
+}
 
-  }
-  .left .dataticket p{
+.left .dataticket p {
     margin-bottom: 5px;
     margin-left: 40px;
-  }
-   .left .datacalendar input{
+}
+
+.left .datacalendar input {
     border: none;
     outline: none;
     width: 100px;
+}
 
-  }
-  .left .datacalendar p{
+.left .datacalendar p {
     margin-bottom: 5px;
     margin-left: 40px
-  }
-  .left .formDayoff{
+}
+
+.left .formDayoff {
     width: 100%;
     margin: auto;
-  }
+}
 
-  .left .formDayoff table{
+.left .formDayoff table {
     border-collapse: collapse;
     width: 100%;
     text-align: center;
@@ -158,24 +169,27 @@
     display: block;
     height: 270px;
     overflow-y: auto;
-  }
-  .left .formDayoff td, .left .formDayoff th{
+}
+
+.left .formDayoff td,
+.left .formDayoff th {
     border: 1px solid #cccccccc;
     padding: 8px;
     width: 100%;
-  }
+}
 
-  .left .formDayoff thead{
+.left .formDayoff thead {
     font-weight: bold;
     text-transform: uppercase;
     background-color: #2f3640;
     color: white;
-  }
+}
 
-  .left .formDayoff tr:nth-child(even){
+.left .formDayoff tr:nth-child(even) {
     background-color: #dddddd;
-  }
-  .left .formDayoff table button{
+}
+
+.left .formDayoff table button {
     width: 40px;
     height: 40px;
     padding: 7px;
@@ -185,45 +199,48 @@
     border-radius: 10px;
     cursor: pointer;
     margin-bottom: 5px;
-  }
-  .left .formDayoff table button:hover{
+}
+
+.left .formDayoff table button:hover {
     transform: scale(0.95);
-  }
-  
-  .right{
+}
+
+.right {
     width: 65%;
     float: right;
     height: auto;
     margin-right: 30px;
     margin-top: 30px;
+}
 
-  }
-
-  .right table{
+.right table {
     border-collapse: collapse;
     width: 100%;
     text-align: center;
     background-color: white;
     max-height: 540px;
     overflow-y: auto;
-  }
-  .right td,.right th{
+}
+
+.right td,
+.right th {
     border: 1px solid #cccccccc;
     padding: 8px;
     width: auto;
-  }
+}
 
-  .right thead{
+.right thead {
     font-weight: bold;
     text-transform: uppercase;
     background-color: #2f3640;
     color: white;
-  }
+}
 
-  .right tr:nth-child(even){
+.right tr:nth-child(even) {
     background-color: #dddddd;
-  }
-  .right table .del{
+}
+
+.right table .del {
     width: 40px;
     height: 40px;
     padding: 7px;
@@ -234,11 +251,13 @@
     border-radius: 10px;
     cursor: pointer;
     margin-bottom: 5px;
-  }
-  .right table .del:hover{
+}
+
+.right table .del:hover {
     transform: scale(0.95);
-  }
-  .right table .payment-confirmation{
+}
+
+.right table .payment-confirmation {
     width: 40px;
     height: 40px;
     font-size: 20px;
@@ -249,11 +268,13 @@
     border-radius: 10px;
     cursor: pointer;
     margin-bottom: 5px;
-  }
-  .right table .payment-confirmation:hover{
+}
+
+.right table .payment-confirmation:hover {
     transform: scale(0.95);
-  }
-  .right table .add-to-black-list{
+}
+
+.right table .add-to-black-list {
     width: 40px;
     height: 40px;
     font-size: 20px;
@@ -264,48 +285,51 @@
     border-radius: 10px;
     cursor: pointer;
     margin-bottom: 5px;
-  }
-  .right table .add-to-black-list:hover{
+}
+
+.right table .add-to-black-list:hover {
     transform: scale(0.95);
-  }
-  .modal {
+}
+
+.modal {
     position: fixed;
-    z-index: 5; 
-    padding-top: 100px; 
+    z-index: 5;
+    padding-top: 100px;
     left: 0;
     top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
-  }
-  
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
 
-  .modal-content-1 {
+.modal-content-1 {
     background-color: #fefefe;
     margin: auto auto auto auto;
     padding: 20px;
     border: 1px solid #888;
     border-radius: 20px;
     width: 280px;
-    height: 340px;
-  }
-  
-  .modal-content-1 .text{
+    min-height: 340px;
+}
+
+.modal-content-1 .text {
     font-size: 30px;
     text-align: center;
-  }
-  .modal-content-1 input{
+}
+
+.modal-content-1 input {
     border: none;
-    border-bottom:1px solid #2f3640;
+    border-bottom: 1px solid #2f3640;
     width: 100%;
     height: 35px;
     margin-top: 5px;
     outline: none;
     margin: auto auto 10px auto;
-  }
-  .modal-content-1 button{
+}
+
+.modal-content-1 button {
     width: 110px;
     height: 40px;
     border: none;
@@ -314,53 +338,59 @@
     background-color: #2f3640;
     cursor: pointer;
     outline: none;
-    margin-left:auto;
-    margin-right:auto;
-    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
     margin-top: 10px;
-  }
-  .modal-content-1 button:hover{
+}
+
+.modal-content-1 button:hover {
     transform: scale(0.95);
-  }
-  .close {
+}
+
+.close {
     color: #000;
     float: right;
     font-size: 28px;
     font-weight: bold;
     margin-top: -15px;
     margin-right: -15px;
-  }
-  
-  .close:hover,
-  .close:focus {
+}
+
+.close:hover,
+.close:focus {
     color: rgb(31, 27, 216);
     text-decoration: none;
     cursor: pointer;
-  }
-  .modal-content-2 {
+}
+
+.modal-content-2 {
     background-color: #fefefe;
     margin: auto auto auto auto;
     padding: 20px;
     border: 1px solid #888;
     border-radius: 20px;
     width: 280px;
-    height: 350px;
-  }
-  .modal-content-2 .text{
+    min-height: 350px;
+}
+
+.modal-content-2 .text {
     font-size: 30px;
     text-align: center;
     margin-bottom: 10px;
-  }
-  .modal-content-2 input{
+}
+
+.modal-content-2 input {
     border: none;
-    border-bottom:1px solid #2f3640;
+    border-bottom: 1px solid #2f3640;
     width: 100%;
     height: 35px;
     margin-top: 5px;
     outline: none;
     margin: auto auto 10px auto;
-  }
-  .modal-content-2 button{
+}
+
+.modal-content-2 button {
     width: 110px;
     height: 40px;
     border: none;
@@ -369,38 +399,43 @@
     background-color: #2f3640;
     cursor: pointer;
     outline: none;
-    margin-left:auto;
-    margin-right:auto;
-    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
     margin-top: 10px;
-  }
-  .modal-content-2 button:hover{
+}
+
+.modal-content-2 button:hover {
     transform: scale(0.95);
-  }
-  .modal-content-3 {
+}
+
+.modal-content-3 {
     background-color: #fefefe;
     margin: auto auto auto auto;
     padding: 20px;
     border: 1px solid #888;
     border-radius: 20px;
     width: 280px;
-    height: 160px;
-  }
-  .modal-content-3 .text{
+    min-height: 160px;
+}
+
+.modal-content-3 .text {
     font-size: 30px;
     text-align: center;
     margin-bottom: 10px;
-  }
-  .modal-content-3 input{
+}
+
+.modal-content-3 input {
     border: none;
-    border-bottom:1px solid #2f3640;
+    border-bottom: 1px solid #2f3640;
     width: 100%;
     height: 35px;
     margin-top: 5px;
     outline: none;
     margin: auto auto 10px auto;
-  }
-  .modal-content-3 button{
+}
+
+.modal-content-3 button {
     width: 110px;
     height: 40px;
     border: none;
@@ -409,69 +444,87 @@
     background-color: #2f3640;
     cursor: pointer;
     outline: none;
-    margin-left:auto;
-    margin-right:auto;
-    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
     margin-top: 10px;
-  }
-  .modal-content-3 button:hover{
+}
+
+.modal-content-3 button:hover {
     transform: scale(0.95);
-  }
-  
+}
 
-
-
-  .footer{
+.footer {
     width: 100%;
     height: 220px;
     background-color: #2f3640;
     float: left;
     margin-top: -25px;
-  }
-  .footer .footer_left{
+}
+
+.footer .footer_left {
     width: 35%;
     height: 70%;
     margin: 20px auto auto 7%;
-  }
-  .footer .footer_left p{
+}
+
+.footer .footer_left p {
     font-size: 20px;
-  }
-  .footer .footer_left .fas,.footer .footer_left .far{
+}
+
+.footer .footer_left .fas,
+.footer .footer_left .far {
     padding: 10px;
     border-radius: 50%;
     background-color: white;
     text-align: center;
     margin: 15px 20px auto auto;
-  }
-  .footer .footer_left i {
-    position: relative;
+}
 
-  }
-  .footer .footer_left span {
+.footer .footer_left i {
+    position: relative;
+}
+
+.footer .footer_left span {
     color: white;
-  }
-  .footer .footer_right{
+}
+
+.footer .footer_right {
     float: right;
     width: 40%;
     height: 70%;
     margin: -145px 7% auto auto;
     text-align: none;
-  }
-  .footer .footer_right h1{
+}
+
+.footer .footer_right h1 {
     color: white;
     margin-bottom: 20px;
     float: left;
-  }
-  .footer .footer_right p{
+}
+
+.footer .footer_right p {
     color: white;
     margin-bottom: 20px;
     font-size: 17px;
     float: left;
-  }
-  .footer .footer_right a{
+}
+
+.footer .footer_right a {
     color: white;
     margin-right: 30px;
     font-size: 30px;
-  }
+}
 
-
+.txt_time1,
+.txt_time2,
+.txt_time3,
+.txt_price,
+.txt_price1,
+.txt_price2,
+.txt_price3,
+.txt_numberOfTent,
+.txt_dayoff {
+    color: red;
+    display: none;
+}
